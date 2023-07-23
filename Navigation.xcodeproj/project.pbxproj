@@ -12,9 +12,12 @@
 		55478E8E2A2C9FD700D07C69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55478E8D2A2C9FD700D07C69 /* ViewController.swift */; };
 		55478E932A2C9FD800D07C69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55478E922A2C9FD800D07C69 /* Assets.xcassets */; };
 		55478E962A2C9FD800D07C69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55478E942A2C9FD800D07C69 /* LaunchScreen.storyboard */; };
-		55478EA22A2CB4BE00D07C69 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55478EA12A2CB4BE00D07C69 /* ProfileViewController.swift */; };
 		55478EA42A2CB4D800D07C69 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55478EA32A2CB4D800D07C69 /* FeedViewController.swift */; };
 		55478EA62A2E189200D07C69 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55478EA52A2E189200D07C69 /* PostViewController.swift */; };
+		556B3FD32A67E33C00F8571E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B3FD22A67E33C00F8571E /* LogInViewController.swift */; };
+		556B3FD52A67EA4F00F8571E /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B3FD42A67EA4F00F8571E /* ColorSet.swift */; };
+		556B3FD72A67EBBC00F8571E /* LogInViewElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B3FD62A67EBBC00F8571E /* LogInViewElement.swift */; };
+		556B3FD92A67F56300F8571E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B3FD82A67F56300F8571E /* ProfileViewController.swift */; };
 		558B104C2A56EDC10030A343 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558B104B2A56EDC10030A343 /* ProfileView.swift */; };
 		55F434352A2E24BC0062F561 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F434342A2E24BC0062F561 /* Post.swift */; };
 		55F434372A2E29E80062F561 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F434362A2E29E80062F561 /* InfoViewController.swift */; };
@@ -28,9 +31,12 @@
 		55478E922A2C9FD800D07C69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55478E952A2C9FD800D07C69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		55478E972A2C9FD800D07C69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		55478EA12A2CB4BE00D07C69 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		55478EA32A2CB4D800D07C69 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		55478EA52A2E189200D07C69 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		556B3FD22A67E33C00F8571E /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		556B3FD42A67EA4F00F8571E /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
+		556B3FD62A67EBBC00F8571E /* LogInViewElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewElement.swift; sourceTree = "<group>"; };
+		556B3FD82A67F56300F8571E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		558B104B2A56EDC10030A343 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		55F434342A2E24BC0062F561 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		55F434362A2E29E80062F561 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -72,12 +78,15 @@
 				55478E922A2C9FD800D07C69 /* Assets.xcassets */,
 				55478E942A2C9FD800D07C69 /* LaunchScreen.storyboard */,
 				55478E972A2C9FD800D07C69 /* Info.plist */,
-				55478EA12A2CB4BE00D07C69 /* ProfileViewController.swift */,
+				556B3FD82A67F56300F8571E /* ProfileViewController.swift */,
 				55478EA32A2CB4D800D07C69 /* FeedViewController.swift */,
 				55478EA52A2E189200D07C69 /* PostViewController.swift */,
 				55F434342A2E24BC0062F561 /* Post.swift */,
 				55F434362A2E29E80062F561 /* InfoViewController.swift */,
 				558B104B2A56EDC10030A343 /* ProfileView.swift */,
+				556B3FD22A67E33C00F8571E /* LogInViewController.swift */,
+				556B3FD42A67EA4F00F8571E /* ColorSet.swift */,
+				556B3FD62A67EBBC00F8571E /* LogInViewElement.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -157,10 +166,13 @@
 				55478E8E2A2C9FD700D07C69 /* ViewController.swift in Sources */,
 				55478E8A2A2C9FD700D07C69 /* AppDelegate.swift in Sources */,
 				55478EA42A2CB4D800D07C69 /* FeedViewController.swift in Sources */,
-				55478EA22A2CB4BE00D07C69 /* ProfileViewController.swift in Sources */,
+				556B3FD52A67EA4F00F8571E /* ColorSet.swift in Sources */,
+				556B3FD92A67F56300F8571E /* ProfileViewController.swift in Sources */,
 				55F434352A2E24BC0062F561 /* Post.swift in Sources */,
 				55F434372A2E29E80062F561 /* InfoViewController.swift in Sources */,
+				556B3FD32A67E33C00F8571E /* LogInViewController.swift in Sources */,
 				55478E8C2A2C9FD700D07C69 /* SceneDelegate.swift in Sources */,
+				556B3FD72A67EBBC00F8571E /* LogInViewElement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,7 +323,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Navigation;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Navigation99999999999999;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -338,7 +350,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Navigation;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Navigation99999999999999;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

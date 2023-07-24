@@ -26,7 +26,7 @@
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="W9u-4V-Kqk" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="3OS-Th-COS"/>
-                            <constraint firstItem="W9u-4V-Kqk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="357" id="NcA-pw-ocV"/>
+                            <constraint firstItem="W9u-4V-Kqk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="357" placeholder="YES" id="NcA-pw-ocV"/>
                             <constraint firstItem="W9u-4V-Kqk" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="qrr-Zu-89G"/>
                         </constraints>
                     </view>

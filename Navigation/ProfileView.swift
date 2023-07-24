@@ -1,5 +1,5 @@
 import UIKit
-
+import StorageService
 class ProfileView: UIView {
     
     

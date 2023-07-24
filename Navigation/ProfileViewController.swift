@@ -1,14 +1,19 @@
 import UIKit
-
+import StorageService
 class ProfileViewController: UIViewController {
         
         private let profileView = ProfileView()
        
-       
+   
         override func viewDidLoad() {
             super.viewDidLoad()
-           
-            view.backgroundColor = .lightGray
+            #if DEBUG
+            view.backgroundColor = .red
+            #else
+            view.backgroundColor = .blue
+            #endif
+            
+           // view.backgroundColor = .lightGray
             view.addSubview(profileView)
             profileView.translatesAutoresizingMaskIntoConstraints = false
             constraintSetup()

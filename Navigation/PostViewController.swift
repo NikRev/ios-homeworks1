@@ -1,6 +1,7 @@
 
 import UIKit
 import Foundation
+import StorageService
 class PostViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -19,14 +20,14 @@ class PostViewController: UIViewController {
         present(navigationController, animated: true,completion: nil)
     }
     
-    let post:Post
-    init (post:Post){
+    public let post:Post1
+    init (post:Post1){
         self.post = post
         super.init(nibName: nil, bundle: nil)
-        title = post.title
+        
     }
     
-    required init?(coder: NSCoder) {
+   public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     

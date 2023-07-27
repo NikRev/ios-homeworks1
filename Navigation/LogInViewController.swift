@@ -86,10 +86,15 @@ class LogInViewController:UIViewController{
         if let loginText = loginTextField.text, !loginText.isEmpty,
             let passwordText = passwordTextField.text, !passwordText.isEmpty {
             // Все поля заполнены, можно продолжать
-            let profileViewController = ProfileViewController()
-            navigationController?.pushViewController(profileViewController, animated: true)
+            print("Все поля заполнены, выполняю переход")
+            let profileViewContr = ProfileViewController()
+            navigationController?.pushViewController(profileViewContr, animated: true)
+            tabBarController?.selectedIndex = 2
+
+           // present(profileViewContr, animated: true)
         } else {
             // Выдать алерт, что данные не заполнены
+            print("Данные не заполнены, не выполняю переход")
             let alert = UIAlertController(title: "Ошибка", message: "Заполните все поля", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)

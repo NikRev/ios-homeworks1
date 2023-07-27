@@ -14,6 +14,9 @@
 		5509ABBF2A6E8802003D3E94 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5509ABAA2A6E8802003D3E94 /* StorageService.framework */; };
 		5509ABC02A6E8802003D3E94 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5509ABAA2A6E8802003D3E94 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5509ABC82A6E880C003D3E94 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F434342A2E24BC0062F561 /* Post.swift */; };
+		5509ABCA2A7131F1003D3E94 /* Publications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509ABC92A7131F1003D3E94 /* Publications.swift */; };
+		5509ABCC2A71B286003D3E94 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509ABCB2A71B286003D3E94 /* ProfileHeaderView.swift */; };
+		5509ABCE2A71B72B003D3E94 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509ABCD2A71B72B003D3E94 /* PostTableViewCell.swift */; };
 		55478E8A2A2C9FD700D07C69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55478E892A2C9FD700D07C69 /* AppDelegate.swift */; };
 		55478E8C2A2C9FD700D07C69 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55478E8B2A2C9FD700D07C69 /* SceneDelegate.swift */; };
 		55478E8E2A2C9FD700D07C69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55478E8D2A2C9FD700D07C69 /* ViewController.swift */; };
@@ -82,6 +85,9 @@
 		5509ABAD2A6E8802003D3E94 /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
 		5509ABB32A6E8802003D3E94 /* StorageServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StorageServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5509ABBA2A6E8802003D3E94 /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
+		5509ABC92A7131F1003D3E94 /* Publications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publications.swift; sourceTree = "<group>"; };
+		5509ABCB2A71B286003D3E94 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		5509ABCD2A71B72B003D3E94 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		55478E862A2C9FD700D07C69 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55478E892A2C9FD700D07C69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55478E8B2A2C9FD700D07C69 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -181,6 +187,9 @@
 				558B104B2A56EDC10030A343 /* ProfileView.swift */,
 				556B3FD22A67E33C00F8571E /* LogInViewController.swift */,
 				556B3FD42A67EA4F00F8571E /* ColorSet.swift */,
+				5509ABC92A7131F1003D3E94 /* Publications.swift */,
+				5509ABCB2A71B286003D3E94 /* ProfileHeaderView.swift */,
+				5509ABCD2A71B72B003D3E94 /* PostTableViewCell.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -348,10 +357,13 @@
 			files = (
 				55478EA62A2E189200D07C69 /* PostViewController.swift in Sources */,
 				558B104C2A56EDC10030A343 /* ProfileView.swift in Sources */,
+				5509ABCE2A71B72B003D3E94 /* PostTableViewCell.swift in Sources */,
 				55478E8E2A2C9FD700D07C69 /* ViewController.swift in Sources */,
 				55478E8A2A2C9FD700D07C69 /* AppDelegate.swift in Sources */,
 				55478EA42A2CB4D800D07C69 /* FeedViewController.swift in Sources */,
 				556B3FD52A67EA4F00F8571E /* ColorSet.swift in Sources */,
+				5509ABCA2A7131F1003D3E94 /* Publications.swift in Sources */,
+				5509ABCC2A71B286003D3E94 /* ProfileHeaderView.swift in Sources */,
 				556B3FD92A67F56300F8571E /* ProfileViewController.swift in Sources */,
 				55F434372A2E29E80062F561 /* InfoViewController.swift in Sources */,
 				556B3FD32A67E33C00F8571E /* LogInViewController.swift in Sources */,

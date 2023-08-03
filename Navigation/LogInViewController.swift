@@ -18,6 +18,52 @@ class PaddedTextField: UITextField {
 class LogInViewController:UIViewController{
     let colorSet = UIColor(hex: "#4885CC")
 
+    init() {
+    super.init(nibName: nil, bundle: nil)
+    }
+    
+     required init?(coder: NSCoder) {
+         fatalError("init(coder:) has not been implemented")
+     }
+   
+    override func viewDidLoad() {
+    super.viewDidLoad()
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+    self.view.addGestureRecognizer(tapGesture)
+    buttonVk.addTarget(self, action: #selector(buttonLogFunc), for: .touchUpInside)
+    navigationController?.navigationBar.isHidden = true
+    view.backgroundColor = .white
+    setupAdd()
+    setupConstraints()
+    }
+    
+    override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    scrollView.contentSize = CGSize(width: view.frame.width, height: buttonVk.frame.maxY + 16)
+        }
+    
+    private let scrollView: UIScrollView = {
+    let scrollView = UIScrollView()
+    scrollView.showsVerticalScrollIndicator = true
+    scrollView.showsHorizontalScrollIndicator = false
+    scrollView.translatesAutoresizingMaskIntoConstraints = false
+    return scrollView
+       }()
+    
+
+    private let stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.spacing = 0
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.layer.cornerRadius = 20
+        stackView.clipsToBounds = true
+        return stackView
+        }()
+        
+    
      private let imageVK: UIImageView = {
          let imageView = UIImageView()
          imageView.image = UIImage(named: "ФотоВк")
@@ -32,7 +78,7 @@ class LogInViewController:UIViewController{
          textField.backgroundColor = .systemGray6
          textField.layer.borderColor = UIColor.lightGray.cgColor
          textField.layer.borderWidth = 0.5
-         textField.layer.cornerRadius = 10
+         textField.layer.cornerRadius = 0
          textField.textColor = .black
          textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
          textField.tintColor = UIColor.systemBlue
@@ -44,12 +90,11 @@ class LogInViewController:UIViewController{
      }()
      
      private let passwordTextField: PaddedTextField = {
-        
          let textField = PaddedTextField()
          textField.backgroundColor = .systemGray6
          textField.layer.borderColor = UIColor.lightGray.cgColor
          textField.layer.borderWidth = 0.5
-         textField.layer.cornerRadius = 10
+         textField.layer.cornerRadius = 0
          textField.textColor = .black
          textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
          textField.tintColor = UIColor.systemBlue
@@ -71,6 +116,7 @@ class LogInViewController:UIViewController{
         button.layer.cornerRadius = button.frame.height / 2 // Установите радиус скругления равным половине высоты кнопки
         button.clipsToBounds = true // Обрезать содержимое кнопки, чтобы соответствовать радиусу скругления
         button.translatesAutoresizingMaskIntoConstraints = false
+       
         return button
     }()
 
@@ -78,8 +124,6 @@ class LogInViewController:UIViewController{
     @objc private func handleTap(){
         self.view.endEditing(true)
     }
-    
-  
 
     @objc private func buttonLogFunc() {
         // Проверка на пустые поля с помощью if let
@@ -101,61 +145,42 @@ class LogInViewController:UIViewController{
         }
     }
 
-    override func viewDidLoad() {
-           super.viewDidLoad()
-           let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-           self.view.addGestureRecognizer(tapGesture)
-           buttonVk.addTarget(self, action: #selector(buttonLogFunc), for: .touchUpInside)
-           navigationController?.navigationBar.isHidden = true
-           view.backgroundColor = .white
-           setupAdd()
-           setupConstraints()
-       }
-
-    
-    
-    init() {
-            super.init(nibName: nil, bundle: nil)
-        }
-        
-    
-     
-     required init?(coder: NSCoder) {
-         fatalError("init(coder:) has not been implemented")
-     }
-     
      private func setupAdd() {
-        
-         view.addSubview(imageVK)
-         view.addSubview(loginTextField)
-         view.addSubview(passwordTextField)
-         view.addSubview(buttonVk)
+     stackView.addArrangedSubview(loginTextField)
+     stackView.addArrangedSubview(passwordTextField)
+     view.addSubview(stackView)
+     view.addSubview(imageVK)
+     view.addSubview(buttonVk)
+     view.addSubview(scrollView)
+     scrollView.addSubview(stackView)
+     scrollView.addSubview(imageVK)
+     scrollView.addSubview(buttonVk)
+       
      }
      
      private func setupConstraints() {
          NSLayoutConstraint.activate([
              // Констрейнты для imageView
-            imageVK.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
+            imageVK.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
             imageVK.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-             
-             // Констрейнты для loginTextField
-             loginTextField.topAnchor.constraint(equalTo: imageVK.bottomAnchor, constant: 20),
-            loginTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            loginTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-             loginTextField.heightAnchor.constraint(equalToConstant: 40),
-             
-             // Констрейнты для passwordTextField
-             passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 10),
-            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-             passwordTextField.heightAnchor.constraint(equalToConstant: 40),
+            
+            //Констрейнты для scrollView
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            // Констрейнты для stackView
+            stackView.topAnchor.constraint(equalTo: imageVK.bottomAnchor, constant: 20),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            stackView.heightAnchor.constraint(equalToConstant: 80), //
              
              // Констрейнты для buttonLog
-             buttonVk.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16),
-             buttonVk.heightAnchor.constraint(equalToConstant: 50),
+            buttonVk.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16),
+            buttonVk.heightAnchor.constraint(equalToConstant: 50),
             buttonVk.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             buttonVk.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
-             
          ])
      }
  }

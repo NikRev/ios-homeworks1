@@ -12,7 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let feedViewController = FeedViewController()
         feedViewController.title = "Лента"
-        feedViewController.view.backgroundColor = .gray
+        feedViewController.view.backgroundColor = .lightGray
         
         let logInViewController = LogInViewController()
         _ = UINavigationController(rootViewController: logInViewController)

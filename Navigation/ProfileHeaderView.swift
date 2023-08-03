@@ -1,5 +1,6 @@
 import UIKit
-
+import StorageService
+import Foundation
 class ProfileHeaderView: UIView, UITableViewDataSource, UITableViewDelegate {
     
     // Метод делегата UITableViewDelegate, возвращающий количество ячеек в секции
@@ -27,6 +28,14 @@ class ProfileHeaderView: UIView, UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // Задайте здесь высоту ячейки
+        return 500
+    }
+
+    
+    
+    //Добавить саму таблицу
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -36,18 +45,19 @@ class ProfileHeaderView: UIView, UITableViewDataSource, UITableViewDelegate {
     private var publications: [Publicantions] = []
     
     override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
-        setupPublications()
-    }
+          super.init(frame: frame)
+        backgroundColor = .white
+          setupConstraints() // Вызовите метод setupConstraints для применения ограничений
+          setupPublications()
+      }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setupViews()
+        setupConstraints()
         setupPublications()
     }
     
-    private func setupViews() {
+    private func setupConstraints() {
         // Добавить таблицу внутри представления header view
         addSubview(tableView)
         NSLayoutConstraint.activate([
@@ -61,8 +71,9 @@ class ProfileHeaderView: UIView, UITableViewDataSource, UITableViewDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         
-        // Зарегистрировать пользовательскую ячейку для таблицы (если у вас есть такая)
-        // tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomCell")
+        
+        // Зарегистрировать пользовательскую ячейку для таблицы
+        //tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomCell")
     }
     
     private func setupPublications() {

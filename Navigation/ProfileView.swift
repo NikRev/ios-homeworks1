@@ -1,11 +1,11 @@
 import UIKit
-
+import StorageService
 class ProfileView: UIView {
     
     
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
-        
+        imageView.image = UIImage(named: "profile_image")
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.masksToBounds = true
@@ -38,7 +38,7 @@ class ProfileView: UIView {
     
     private let submitButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Submit", for: .normal)
+        button.setTitle("Set Status", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .blue
         button.layer.cornerRadius = 4

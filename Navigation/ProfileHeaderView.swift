@@ -1,5 +1,5 @@
 import UIKit
-import StorageService
+
 import Foundation
 class ProfileHeaderView: UIView, UITableViewDataSource, UITableViewDelegate {
     
@@ -33,8 +33,6 @@ class ProfileHeaderView: UIView, UITableViewDataSource, UITableViewDelegate {
         return 500
     }
 
-    
-    
     //Добавить саму таблицу
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -57,6 +55,8 @@ class ProfileHeaderView: UIView, UITableViewDataSource, UITableViewDelegate {
         setupPublications()
     }
     
+    
+    
     private func setupConstraints() {
         // Добавить таблицу внутри представления header view
         addSubview(tableView)
@@ -71,13 +71,10 @@ class ProfileHeaderView: UIView, UITableViewDataSource, UITableViewDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         
-        
-        // Зарегистрировать пользовательскую ячейку для таблицы
-        //tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomCell")
     }
     
     private func setupPublications() {
-        // Создать массив с данными о публикациях (минимум четыре публикации)
+        // Создать массив с данными о публикациях
         publications = Publicantions.make()
         
         // Перезагрузить таблицу для отображения публикаций

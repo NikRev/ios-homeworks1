@@ -1,8 +1,7 @@
 import UIKit
-import StorageService
+
 
 class ProfileViewController: UIViewController {
-   
     // Создаем экземпляр ProfileView и таблицы
     private let profileView = ProfileView()
     let tableView: UITableView = {
@@ -10,6 +9,12 @@ class ProfileViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+    
+    private let scrollView: UIScrollView = {
+           let scrollView = UIScrollView()
+           scrollView.translatesAutoresizingMaskIntoConstraints = false
+           return scrollView
+       }()
     
     // Массив для хранения публикаций
     private var publications: [Publicantions] = []
@@ -22,8 +27,9 @@ class ProfileViewController: UIViewController {
         profileView.translatesAutoresizingMaskIntoConstraints = false
 
         // Добавляем оба представления на представление контроллера
-        view.addSubview(profileView)
-        view.addSubview(tableView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(profileView)
+        scrollView.addSubview(tableView)
         view.backgroundColor = .lightGray
         
         // Добавляем ProfileHeaderView на представление контроллера
@@ -40,6 +46,12 @@ class ProfileViewController: UIViewController {
 
     private func constraintSetup() {
         NSLayoutConstraint.activate([
+            
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
             // Ограничения для profileView
             profileView.topAnchor.constraint(equalTo: view.topAnchor, constant: 75),
             profileView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -49,7 +61,9 @@ class ProfileViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: profileView.bottomAnchor, constant: 100),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        
+           
         ])
     }
 }

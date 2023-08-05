@@ -13,7 +13,7 @@ class PostTableViewCell: UITableViewCell {
     private let postImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill // Изображение будет заполнять всю доступную область, обрезая при необходимости
+        //imageView.contentMode = .scaleAspectFill // Изображение будет заполнять всю доступную область, обрезая при необходимости
         imageView.clipsToBounds = true // Обрезать изображение, чтобы оно не выходило за пределы ячейки
         return imageView
     }()
@@ -58,7 +58,6 @@ class PostTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         setupSubviews()
         setupConstraints()
     }
@@ -92,7 +91,7 @@ class PostTableViewCell: UITableViewCell {
         postDescription.topAnchor.constraint(equalTo: postImageView.bottomAnchor, constant: 8),
         postDescription.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
         postDescription.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-        postDescription.heightAnchor.constraint(equalToConstant: 30) // Adjust the height as needed
+        postDescription.heightAnchor.constraint(equalToConstant: 30) 
         ])
 
         
@@ -118,7 +117,7 @@ class PostTableViewCell: UITableViewCell {
         ])
     }
     
-    func configure(with publication: Publicantions) {
+   public func configure(with publication: Publicantions) {
         postImageView.image = UIImage(named: publication.image)
         likesLabel.text = "Likes: \(publication.likes)"
         viewsLabel.text = "Views: \(publication.views)"

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import StorageService
+
 class InfoViewController: UIViewController {
 
     override func viewDidLoad() {

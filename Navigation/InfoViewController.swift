@@ -28,12 +28,12 @@ class InfoViewController: UIViewController {
         let alertController = UIAlertController(title: "Сообщение", message: "Привет", preferredStyle: .alert)
         
         let action1 = UIAlertAction(title: "Сообщение номер раз", style: .default){[weak self] _ in
-            guard let self = self else { return }
+            guard self != nil else { return }
             print("Сообщение 1")
         }
         
         let action2 = UIAlertAction (title: "Сообщение номер два", style: .default){ [weak self] _ in
-            guard let self = self else { return }
+            guard self != nil else { return }
             print("Сообщение 2")
         }
             alertController.addAction(action1)

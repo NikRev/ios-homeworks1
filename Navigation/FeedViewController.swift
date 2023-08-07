@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import StorageService
+
 class FeedViewController: UIViewController {
 
     override func viewDidLoad() {

@@ -1,6 +1,9 @@
 import UIKit
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
+   
+    private let imageProcessor = ImageProcessor()
     private let postImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -100,6 +103,20 @@ class PostTableViewCell: UITableViewCell {
         viewsLabel.text = "Views: \(publication.views)"
         postDescription.text = publication.description
         authorLabel.text = "Author: \(publication.author)"
+        // Применяем фильтры к изображению
+        if let image = postImageView.image {
+            let imageProcessor = ImageProcessor()  // Создаем экземпляр ImageProcessor
+            imageProcessor.processImage(
+                sourceImage: image,
+                filter: .sepia(intensity: 1.0), // Применяем фильтр 
+                completion: { filteredImage in
+                    DispatchQueue.main.async {
+                        self.postImageView.image = filteredImage
+                    }
+                }
+            )
+        }
     }
+    
 }
 

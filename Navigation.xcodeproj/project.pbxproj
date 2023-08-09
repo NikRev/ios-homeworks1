@@ -10,6 +10,10 @@
 		5509ABCA2A7131F1003D3E94 /* Publications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509ABC92A7131F1003D3E94 /* Publications.swift */; };
 		5509ABCE2A71B72B003D3E94 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509ABCD2A71B72B003D3E94 /* PostTableViewCell.swift */; };
 		5509ABCF2A7BAAAD003D3E94 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F434342A2E24BC0062F561 /* Post.swift */; };
+		553879242A8390990059447E /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 553879232A8390990059447E /* Algorithms */; };
+		553879272A8395640059447E /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 553879262A8395640059447E /* iOSIntPackage */; };
+		5538792A2A839DEC0059447E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 553879292A839DEC0059447E /* SnapKit */; };
+		5538792C2A839DEC0059447E /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 5538792B2A839DEC0059447E /* SnapKit-Dynamic */; };
 		55478E8A2A2C9FD700D07C69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55478E892A2C9FD700D07C69 /* AppDelegate.swift */; };
 		55478E8C2A2C9FD700D07C69 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55478E8B2A2C9FD700D07C69 /* SceneDelegate.swift */; };
 		55478E8E2A2C9FD700D07C69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55478E8D2A2C9FD700D07C69 /* ViewController.swift */; };
@@ -74,6 +78,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5538792A2A839DEC0059447E /* SnapKit in Frameworks */,
+				553879242A8390990059447E /* Algorithms in Frameworks */,
+				553879272A8395640059447E /* iOSIntPackage in Frameworks */,
+				5538792C2A839DEC0059447E /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +147,12 @@
 			dependencies = (
 			);
 			name = Navigation;
+			packageProductDependencies = (
+				553879232A8390990059447E /* Algorithms */,
+				553879262A8395640059447E /* iOSIntPackage */,
+				553879292A839DEC0059447E /* SnapKit */,
+				5538792B2A839DEC0059447E /* SnapKit-Dynamic */,
+			);
 			productName = Navigation;
 			productReference = 55478E862A2C9FD700D07C69 /* Navigation.app */;
 			productType = "com.apple.product-type.application";
@@ -167,6 +181,11 @@
 				Base,
 			);
 			mainGroup = 55478E7D2A2C9FD700D07C69;
+			packageReferences = (
+				553879222A8390990059447E /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+				553879252A8395640059447E /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
+				553879282A839DEC0059447E /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 55478E872A2C9FD700D07C69 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -414,6 +433,56 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		553879222A8390990059447E /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		553879252A8395640059447E /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TrueMax/iOSIntPackage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		553879282A839DEC0059447E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		553879232A8390990059447E /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 553879222A8390990059447E /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+		553879262A8395640059447E /* iOSIntPackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 553879252A8395640059447E /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
+			productName = iOSIntPackage;
+		};
+		553879292A839DEC0059447E /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 553879282A839DEC0059447E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		5538792B2A839DEC0059447E /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 553879282A839DEC0059447E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 55478E7E2A2C9FD700D07C69 /* Project object */;
 }

@@ -1,12 +1,12 @@
 import UIKit
+import SnapKit
 
 class ProfileView: UIView {
-
+    
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "profile_image")
         imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 3
         imageView.layer.borderColor = UIColor.white.cgColor
@@ -19,8 +19,6 @@ class ProfileView: UIView {
         label.text = "Hipster Cat"
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = .black
-        label.isUserInteractionEnabled = true
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -29,8 +27,6 @@ class ProfileView: UIView {
         label.text = "Waiting for something...."
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .gray
-        label.isUserInteractionEnabled = true
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -39,7 +35,6 @@ class ProfileView: UIView {
         textField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         textField.textColor = .gray
         textField.placeholder = "Set your status...."
-        textField.translatesAutoresizingMaskIntoConstraints = false
         textField.borderStyle = .roundedRect
         return textField
     }()
@@ -54,12 +49,11 @@ class ProfileView: UIView {
         button.layer.shadowRadius = 4
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
-    init() {
-        super.init(frame: .zero)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupSubviews()
         setupConstraints()
         setupGestureRecognizers()
@@ -79,36 +73,37 @@ class ProfileView: UIView {
     }
 
     private func setupConstraints() {
-        NSLayoutConstraint.activate([
-            // Constraints for profileImageView
-            profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            profileImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            profileImageView.widthAnchor.constraint(equalToConstant: 100),
-            profileImageView.heightAnchor.constraint(equalToConstant: 100),
+        profileImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(16)
+            make.leading.equalToSuperview().offset(16)
+            make.width.equalTo(100)
+            make.height.equalTo(100)
+        }
 
-            // Constraints for nameLabel
-            nameLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 16),
-            nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 30),
-            //nameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor),
-            
+        nameLabel.snp.makeConstraints { make in
+            make.leading.equalTo(profileImageView.snp.trailing).offset(16)
+            make.top.equalToSuperview().offset(30)
+        }
 
-            // Constraints for statusLabel
-            statusLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
-            statusLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 16),
-            statusLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+        statusLabel.snp.makeConstraints { make in
+            make.leading.equalTo(profileImageView.snp.trailing).offset(16)
+            make.top.equalTo(nameLabel.snp.bottom).offset(8)
+            make.trailing.equalToSuperview().offset(-16)
+        }
 
-            // Constraints for statusTextField
-            statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 8),
-            statusTextField.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 16),
-            statusTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -100),
-            statusTextField.heightAnchor.constraint(equalToConstant: 30),
+        statusTextField.snp.makeConstraints { make in
+            make.leading.equalTo(profileImageView.snp.trailing).offset(16)
+            make.top.equalTo(statusLabel.snp.bottom).offset(8)
+            make.trailing.equalToSuperview().offset(-100)
+            make.height.equalTo(30)
+        }
 
-            // Constraints for submitButton
-            submitButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 30),
-            submitButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            submitButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            submitButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
+        submitButton.snp.makeConstraints { make in
+            make.top.equalTo(statusTextField.snp.bottom).offset(30)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(50)
+        }
     }
 
     private func setupGestureRecognizers() {

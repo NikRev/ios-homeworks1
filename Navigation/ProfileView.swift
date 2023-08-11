@@ -1,5 +1,5 @@
 import UIKit
-import SnapKit
+
 
 class ProfileView: UIView {
     

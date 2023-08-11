@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  Navigation
-//
-//  Created by Никита  on 04.06.2023.
-//
-
 import UIKit
 
 @main
@@ -33,4 +26,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-

@@ -24,20 +24,18 @@ class FeedViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    @objc private func showPost() {
-        let post = Post (title: "Заголовок поста")
+    
+    @objc public func showPost() {
+        let post = Post1 (title: "Заголовок поста")
 
         let postViewContorlller = PostViewController(post: post)
         navigationController?.pushViewController(postViewContorlller, animated: true)
     }
 
   
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+       
     }
     
 

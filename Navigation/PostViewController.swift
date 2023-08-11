@@ -1,11 +1,6 @@
-//
-//  PostViewController.swift
-//  Navigation
-//
-//  Created by Никита  on 05.06.2023.
-//
 
 import UIKit
+import Foundation
 
 class PostViewController: UIViewController {
 
@@ -25,25 +20,16 @@ class PostViewController: UIViewController {
         present(navigationController, animated: true,completion: nil)
     }
     
-    let post:Post
-    init (post:Post){
+    public let post:Post1
+    init (post:Post1){
         self.post = post
         super.init(nibName: nil, bundle: nil)
-        title = post.title
+        
     }
     
-    required init?(coder: NSCoder) {
+   public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+   
 }

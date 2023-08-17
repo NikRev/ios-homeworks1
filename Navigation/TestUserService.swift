@@ -23,5 +23,9 @@ public class TestUserService{
 }
 
 
-
+#if DEBUG
+let userService: UserService = TestUserService()
+#else
+let userService: UserService = CurrentUserService(currentUser: users)
+#endif
 

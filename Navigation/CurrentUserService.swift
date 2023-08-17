@@ -1,7 +1,7 @@
 import UIKit
 
 public class CurrentUserService {
-  private var currentUser: User
+   var currentUser: User
    var users: [User] = [] // Объявляем массив пользователей
     
     init(currentUser: User) {

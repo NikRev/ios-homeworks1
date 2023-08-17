@@ -12,11 +12,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     private var publications: [Publicantions] = []
 
     
-#if DEBUG
-let userService: UserService = TestUserService()
-#else
-let userService: UserService = CurrentUserService(currentUser: users)
-#endif
+
 
     var currentUser: User? {
            didSet {

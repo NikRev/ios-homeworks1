@@ -2,7 +2,7 @@ import UIKit
 
 class ProfileView: UIView {
 
-    private let profileImageView: UIImageView = {
+    public let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "profile_image")
         imageView.contentMode = .scaleAspectFit
@@ -14,7 +14,7 @@ class ProfileView: UIView {
         return imageView
     }()
 
-    private let nameLabel: UILabel = {
+    public let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Hipster Cat"
         label.font = UIFont.boldSystemFont(ofSize: 18)
@@ -76,6 +76,11 @@ class ProfileView: UIView {
         addSubview(statusLabel)
         addSubview(statusTextField)
         addSubview(submitButton)
+    }
+    
+    func setUserData(user: User) {
+           nameLabel.text = user.userName
+           profileImageView.image = user.avatar
     }
 
     private func setupConstraints() {
@@ -144,4 +149,5 @@ class ProfileView: UIView {
         statusTextField.text = status
     }
 
+    
 }

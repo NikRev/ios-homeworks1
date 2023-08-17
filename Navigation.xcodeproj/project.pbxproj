@@ -10,6 +10,8 @@
 		5509ABCA2A7131F1003D3E94 /* Publications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509ABC92A7131F1003D3E94 /* Publications.swift */; };
 		5509ABCE2A71B72B003D3E94 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5509ABCD2A71B72B003D3E94 /* PostTableViewCell.swift */; };
 		5509ABCF2A7BAAAD003D3E94 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F434342A2E24BC0062F561 /* Post.swift */; };
+		551313872A8793BF00493490 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551313862A8793BF00493490 /* User.swift */; };
+		551A6C372A8CDFD800509673 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A6C362A8CDFD800509673 /* TestUserService.swift */; };
 		55478E8A2A2C9FD700D07C69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55478E892A2C9FD700D07C69 /* AppDelegate.swift */; };
 		55478E8C2A2C9FD700D07C69 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55478E8B2A2C9FD700D07C69 /* SceneDelegate.swift */; };
 		55478E8E2A2C9FD700D07C69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55478E8D2A2C9FD700D07C69 /* ViewController.swift */; };
@@ -23,6 +25,7 @@
 		558B104C2A56EDC10030A343 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558B104B2A56EDC10030A343 /* ProfileView.swift */; };
 		55D2FFAD2A81137E00EC448B /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D2FFAC2A81137E00EC448B /* PaddedTextField.swift */; };
 		55F434372A2E29E80062F561 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F434362A2E29E80062F561 /* InfoViewController.swift */; };
+		55FC240F2A8A355500181A38 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FC240E2A8A355500181A38 /* CurrentUserService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +54,8 @@
 /* Begin PBXFileReference section */
 		5509ABC92A7131F1003D3E94 /* Publications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publications.swift; sourceTree = "<group>"; };
 		5509ABCD2A71B72B003D3E94 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		551313862A8793BF00493490 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		551A6C362A8CDFD800509673 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		55478E862A2C9FD700D07C69 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55478E892A2C9FD700D07C69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55478E8B2A2C9FD700D07C69 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +72,7 @@
 		55D2FFAC2A81137E00EC448B /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
 		55F434342A2E24BC0062F561 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		55F434362A2E29E80062F561 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		55FC240E2A8A355500181A38 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,9 @@
 				5509ABC92A7131F1003D3E94 /* Publications.swift */,
 				5509ABCD2A71B72B003D3E94 /* PostTableViewCell.swift */,
 				55D2FFAC2A81137E00EC448B /* PaddedTextField.swift */,
+				551313862A8793BF00493490 /* User.swift */,
+				55FC240E2A8A355500181A38 /* CurrentUserService.swift */,
+				551A6C362A8CDFD800509673 /* TestUserService.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -199,11 +208,14 @@
 				55478E8E2A2C9FD700D07C69 /* ViewController.swift in Sources */,
 				55478E8A2A2C9FD700D07C69 /* AppDelegate.swift in Sources */,
 				5509ABCF2A7BAAAD003D3E94 /* Post.swift in Sources */,
+				55FC240F2A8A355500181A38 /* CurrentUserService.swift in Sources */,
 				55478EA42A2CB4D800D07C69 /* FeedViewController.swift in Sources */,
 				556B3FD52A67EA4F00F8571E /* ColorSet.swift in Sources */,
+				551313872A8793BF00493490 /* User.swift in Sources */,
 				5509ABCA2A7131F1003D3E94 /* Publications.swift in Sources */,
 				556B3FD92A67F56300F8571E /* ProfileViewController.swift in Sources */,
 				55F434372A2E29E80062F561 /* InfoViewController.swift in Sources */,
+				551A6C372A8CDFD800509673 /* TestUserService.swift in Sources */,
 				556B3FD32A67E33C00F8571E /* LogInViewController.swift in Sources */,
 				55478E8C2A2C9FD700D07C69 /* SceneDelegate.swift in Sources */,
 				55D2FFAD2A81137E00EC448B /* PaddedTextField.swift in Sources */,

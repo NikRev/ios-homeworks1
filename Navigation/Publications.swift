@@ -33,7 +33,27 @@ extension Publicantions{
                           description: "Освоим программирование за час",
                           image: "programOnHour",
                           views: 33,
-                          likes: 33)
+                          likes: 33),
+            Publicantions(author: "Никита Зварыкин",
+                          description: "Освоим программирование за час",
+                          image: "programOnHour",
+                          views: 33,
+                          likes: 33),
+            Publicantions(author: "Никита Зварыкин",
+                          description: "Освоим программирование за час",
+                          image: "programOnHour",
+                          views: 33,
+                          likes: 33),
+            Publicantions(author: "Никита Зварыкин",
+                          description: "Освоим программирование за час",
+                          image: "programOnHour",
+                          views: 33,
+                          likes: 33),
+            Publicantions(author: "Ревин Никита",
+                          description: "Авто-Тюнинг",
+                          image: "profile_image",
+                          views: 33,
+                          likes: 21),
             
         
         ]

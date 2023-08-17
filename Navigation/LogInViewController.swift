@@ -3,6 +3,9 @@ import UIKit
 class LogInViewController: UIViewController {
     let colorSet = UIColor(named: "ColorSet")
     let paddedTextField = PaddedTextField()
+   
+   
+
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -104,7 +107,7 @@ class LogInViewController: UIViewController {
 
     }
 
-    
+   
     override func viewWillDisappear(_ animated: Bool) {
            super.viewWillDisappear(animated)
            removeKeyboardObservers()
@@ -139,28 +142,43 @@ class LogInViewController: UIViewController {
 
     
     @objc private func buttonLogFunc() {
-        if let loginText = loginTextField.text, !loginText.isEmpty,
-            let passwordText = passwordTextField.text, !passwordText.isEmpty {
-            tabBarController?.selectedIndex = 2
-        } else {
-            let alert = UIAlertController(title: "Ошибка", message: "Заполните все поля", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
+        if let loginText = loginTextField.text, !loginText.isEmpty {
+            
+            // Попытка аутентификации пользователя
+            if let authenticatedUser = userService.authenticateUser(login: loginText) {
+            let profileVC = ProfileViewController()
+            profileVC.currentUser = authenticatedUser
+            // Анимация перехода к профильному экрану
+            UIView.animate(withDuration: 0.3, animations: {
+                self.tabBarController?.selectedIndex = 2
+                let transition = CATransition()
+                transition.type = .push
+                transition.subtype = .fromRight
+                self.view.window?.layer.add(transition, forKey: kCATransition)
+                })
+            } else {
+                let alert = UIAlertController(title: "Ошибка", message: "Пользователь с таким логином не найден", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                present(alert, animated: true, completion: nil)
+            }
         }
     }
-    
-    private func setupKeyboardObservers() {
+
+
+
+
+    func setupKeyboardObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(willShowKeyboard(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(willHideKeyboard(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    private func removeKeyboardObservers() {
+    func removeKeyboardObservers() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     
-    private func setupAdd() {
+     func setupAdd() {
         scrollView.addSubview(stackView)
         scrollView.addSubview(imageVK)
         scrollView.addSubview(buttonVk)
@@ -173,7 +191,7 @@ class LogInViewController: UIViewController {
     }
 
     
-    private func setupConstraints() {
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             // Констрейнты для imageView
             imageVK.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 120),

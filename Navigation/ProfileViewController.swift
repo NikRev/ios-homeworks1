@@ -7,9 +7,25 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-
+   
+    
     private var publications: [Publicantions] = []
 
+    
+#if DEBUG
+let userService: UserService = TestUserService()
+#else
+let userService: UserService = CurrentUserService(currentUser: users)
+#endif
+
+    var currentUser: User? {
+           didSet {
+               // Когда устанавливается новое значение для currentUser,
+               // обновляем отображение данных на экране
+               updateHeaderView()
+           }
+       }
+    
     override func viewDidLoad() {
             super.viewDidLoad()
             tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "Cell")
@@ -20,10 +36,24 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
             tableView.delegate = self
             tableView.dataSource = self
             publications = Publicantions.make()
-           let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-               tapGesture.delegate = self
-               view.addGestureRecognizer(tapGesture)
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+            tapGesture.delegate = self
+            view.addGestureRecognizer(tapGesture)
+            tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "Cell")
+            tableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "ProfileView")
+
+    }
+
+    public func updateHeaderView() {
+        if let user = currentUser, let profileView = tableView.headerView(forSection: 0) as? ProfileView {
+            profileView.setUserData(user: user)
         }
+    }
+   
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateHeaderView()
+    }
 
     @objc private func handleTap() {
             // End editing on the text field to dismiss the keyboard
@@ -45,6 +75,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         // Возвращаем количество секций в таблице (1 для профиля)
         return 1
+        
     }
     
 
@@ -66,14 +97,20 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            let profileView = ProfileView()
-            let headerHeight: CGFloat = 220
-            profileView.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: headerHeight)
-            return profileView
-        }
-        return nil
-    }
+           if section == 0 {
+               let profileView = ProfileView()
+               let headerHeight: CGFloat = 220
+               profileView.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: headerHeight)
+               
+               // Отображаем информацию о пользователе в заголовке
+               if let user = currentUser {
+                   profileView.profileImageView.image = user.avatar
+                   profileView.nameLabel.text = user.userName
+               }
+               return profileView
+           }
+           return nil
+       }
     
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -82,12 +119,11 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return 0
     }
+  
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
            
            tableView.deselectRow(at: indexPath, animated: true)
-       }
+    }
 
-    
-    
 }
 

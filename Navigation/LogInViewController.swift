@@ -144,18 +144,17 @@ class LogInViewController: UIViewController {
     @objc private func buttonLogFunc() {
         if let loginText = loginTextField.text, !loginText.isEmpty {
             
+            #if DEBUG
+            let service = TestUserService()
+            #else
+            let service = CurrentUserService()
+            #endif
+            
             // Попытка аутентификации пользователя
-            if let authenticatedUser = userService.authenticateUser(login: loginText) {
-            let profileVC = ProfileViewController()
-            profileVC.currentUser = authenticatedUser
-            // Анимация перехода к профильному экрану
-            UIView.animate(withDuration: 0.3, animations: {
-                self.tabBarController?.selectedIndex = 2
-                let transition = CATransition()
-                transition.type = .push
-                transition.subtype = .fromRight
-                self.view.window?.layer.add(transition, forKey: kCATransition)
-                })
+            if let authenticatedUser = service.authenticateUser(login: loginText) {
+                let profileVC = ProfileViewController()
+                profileVC.currentUser = authenticatedUser
+                tabBarController?.selectedIndex = 2
             } else {
                 let alert = UIAlertController(title: "Ошибка", message: "Пользователь с таким логином не найден", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -163,6 +162,7 @@ class LogInViewController: UIViewController {
             }
         }
     }
+
 
 
 

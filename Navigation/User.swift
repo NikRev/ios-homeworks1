@@ -4,6 +4,26 @@ public protocol UserService {
     func authenticateUser(login: String) -> User?
 }
 
+enum Users {
+    case main
+    case test
+    
+    var instance: User {
+            switch self {
+            case .main:
+                if let avatarImage = UIImage(named: "avatar1") {
+                    return User(login: "main", userName: "Main User", avatar: avatarImage, status: "Main User Status")
+                }
+            case .test:
+                if let avatarImage = UIImage(named: "avatar2") {
+                    return User(login: "test", userName: "Test User", avatar: avatarImage, status: "Test User Status")
+                }
+            }
+            fatalError("Не удалось создать экземпляр User.")
+        }
+}
+
+
 public class User {
     var login: String
     var userName: String
@@ -20,3 +40,4 @@ public class User {
     
    
 }
+

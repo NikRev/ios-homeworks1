@@ -3,7 +3,8 @@ import UIKit
 class LogInViewController: UIViewController {
     let colorSet = UIColor(named: "ColorSet")
     let paddedTextField = PaddedTextField()
-   
+    var loginDelegate:LoginViewControllerDelegate?
+
    
 
     
@@ -144,21 +145,23 @@ class LogInViewController: UIViewController {
     @objc private func buttonLogFunc() {
         if let loginText = loginTextField.text, !loginText.isEmpty {
             
-            #if DEBUG
-            let service = TestUserService()
-            #else
-            let service = CurrentUserService()
-            #endif
+        #if DEBUG
+        let service = TestUserService()
+        #else
+        let service = CurrentUserService()
+        #endif
+        let authenticatedUser = service.authenticateUser(login: loginText)
             
-            // Попытка аутентификации пользователя
-            if let authenticatedUser = service.authenticateUser(login: loginText) {
-                let profileVC = ProfileViewController()
-                profileVC.currentUser = authenticatedUser
-                tabBarController?.selectedIndex = 2
-            } else {
-                let alert = UIAlertController(title: "Ошибка", message: "Пользователь с таким логином не найден", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                present(alert, animated: true, completion: nil)
+        let isLoginValid = loginDelegate?.check(login: 1234, password: 1234) ?? (authenticatedUser != nil)
+        // Попытка аутентификации пользователя
+        if isLoginValid  {
+            let profileVC = ProfileViewController()
+            
+            tabBarController?.selectedIndex = 2
+        } else {
+            let alert = UIAlertController(title: "Ошибка", message: "Пользователь с таким логином не найден", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
             }
         }
     }

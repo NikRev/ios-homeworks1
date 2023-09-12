@@ -9,12 +9,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
+       
+        let loginFactory = MyLoginFactory()
+               
+      //фабрику для создания LoginInspector
+       let loginInspector = loginFactory.makeLoginInspector()
         
         let feedViewController = FeedViewController()
         feedViewController.title = "Лента"
         feedViewController.view.backgroundColor = .lightGray
-        
+
         let logInViewController = LogInViewController()
+        logInViewController.loginDelegate = loginInspector
         _ = UINavigationController(rootViewController: logInViewController)
         
         let profileViewController = ProfileViewController()

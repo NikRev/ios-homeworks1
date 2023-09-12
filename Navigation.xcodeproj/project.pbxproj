@@ -22,6 +22,9 @@
 		556B3FD32A67E33C00F8571E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B3FD22A67E33C00F8571E /* LogInViewController.swift */; };
 		556B3FD52A67EA4F00F8571E /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B3FD42A67EA4F00F8571E /* ColorSet.swift */; };
 		556B3FD92A67F56300F8571E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B3FD82A67F56300F8571E /* ProfileViewController.swift */; };
+		556C8C2A2AAF6208007CFE15 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C8C292AAF6208007CFE15 /* Checker.swift */; };
+		556C8C2C2AAF6A95007CFE15 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C8C2B2AAF6A95007CFE15 /* LoginInspector.swift */; };
+		556C8C2E2AAF71D6007CFE15 /* MyLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C8C2D2AAF71D6007CFE15 /* MyLoginFactory.swift */; };
 		558B104C2A56EDC10030A343 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558B104B2A56EDC10030A343 /* ProfileView.swift */; };
 		55D2FFAD2A81137E00EC448B /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D2FFAC2A81137E00EC448B /* PaddedTextField.swift */; };
 		55F434372A2E29E80062F561 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F434362A2E29E80062F561 /* InfoViewController.swift */; };
@@ -68,6 +71,9 @@
 		556B3FD22A67E33C00F8571E /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		556B3FD42A67EA4F00F8571E /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
 		556B3FD82A67F56300F8571E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		556C8C292AAF6208007CFE15 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
+		556C8C2B2AAF6A95007CFE15 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
+		556C8C2D2AAF71D6007CFE15 /* MyLoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLoginFactory.swift; sourceTree = "<group>"; };
 		558B104B2A56EDC10030A343 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		55D2FFAC2A81137E00EC448B /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
 		55F434342A2E24BC0062F561 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -126,6 +132,9 @@
 				551313862A8793BF00493490 /* User.swift */,
 				55FC240E2A8A355500181A38 /* CurrentUserService.swift */,
 				551A6C362A8CDFD800509673 /* TestUserService.swift */,
+				556C8C292AAF6208007CFE15 /* Checker.swift */,
+				556C8C2B2AAF6A95007CFE15 /* LoginInspector.swift */,
+				556C8C2D2AAF71D6007CFE15 /* MyLoginFactory.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -204,11 +213,14 @@
 			files = (
 				55478EA62A2E189200D07C69 /* PostViewController.swift in Sources */,
 				558B104C2A56EDC10030A343 /* ProfileView.swift in Sources */,
+				556C8C2E2AAF71D6007CFE15 /* MyLoginFactory.swift in Sources */,
 				5509ABCE2A71B72B003D3E94 /* PostTableViewCell.swift in Sources */,
 				55478E8E2A2C9FD700D07C69 /* ViewController.swift in Sources */,
 				55478E8A2A2C9FD700D07C69 /* AppDelegate.swift in Sources */,
+				556C8C2C2AAF6A95007CFE15 /* LoginInspector.swift in Sources */,
 				5509ABCF2A7BAAAD003D3E94 /* Post.swift in Sources */,
 				55FC240F2A8A355500181A38 /* CurrentUserService.swift in Sources */,
+				556C8C2A2AAF6208007CFE15 /* Checker.swift in Sources */,
 				55478EA42A2CB4D800D07C69 /* FeedViewController.swift in Sources */,
 				556B3FD52A67EA4F00F8571E /* ColorSet.swift in Sources */,
 				551313872A8793BF00493490 /* User.swift in Sources */,

@@ -152,11 +152,10 @@ class LogInViewController: UIViewController {
         #endif
         let authenticatedUser = service.authenticateUser(login: loginText)
             
-        let isLoginValid = loginDelegate?.check(login: 1234, password: 1234) ?? (authenticatedUser != nil)
+            let isLoginValid = loginDelegate?.check(login: 1234, password: 1234) ?? (authenticatedUser != nil)
         // Попытка аутентификации пользователя
         if isLoginValid  {
-            let profileVC = ProfileViewController()
-            
+            _ = ProfileViewController()
             tabBarController?.selectedIndex = 2
         } else {
             let alert = UIAlertController(title: "Ошибка", message: "Пользователь с таким логином не найден", preferredStyle: .alert)

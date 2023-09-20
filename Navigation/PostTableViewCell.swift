@@ -1,6 +1,9 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
+ 
+
+    // MARK: - Subviews - для таблицы
     private let postImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -56,9 +59,7 @@ class PostTableViewCell: UITableViewCell {
         setupSubviews()
         setupConstraints()
     }
-    
     private func setupSubviews() {
-        // Добавляем все подпредставления на contentView ячейки
         contentView.addSubview(postImageView)
         contentView.addSubview(authorLabel)
         contentView.addSubview(postDescription)
@@ -68,6 +69,7 @@ class PostTableViewCell: UITableViewCell {
    
     private func setupConstraints() {
            NSLayoutConstraint.activate([
+
                postImageView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 8),
                postImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
                postImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
@@ -100,6 +102,7 @@ class PostTableViewCell: UITableViewCell {
         viewsLabel.text = "Views: \(publication.views)"
         postDescription.text = publication.description
         authorLabel.text = "Author: \(publication.author)"
+    
     }
 }
 

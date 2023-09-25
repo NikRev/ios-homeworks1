@@ -17,6 +17,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let logInViewController = LogInViewController()
         _ = UINavigationController(rootViewController: logInViewController)
         
+      
+        
         let profileViewController = ProfileViewController()
         profileViewController.title = "Profile"
         let logPhoto = UIImage(systemName: "person.crop.square.filled.and.at.rectangle.fill")

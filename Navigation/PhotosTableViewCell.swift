@@ -1,73 +1,135 @@
 import UIKit
 
-class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class PhotosTableViewCell: UITableViewCell {
     
-    private let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 10
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .white
-        collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: "PhotosCollectionViewCell")
-        return collectionView
+    private let arrowLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "→"
+        label.font = .systemFont(ofSize: 24)
+        label.textColor = .black
+        return label
+    }()
+
+    
+    private let nameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .left
+        label.numberOfLines = 0
+        label.textColor = .black
+        label.font = .boldSystemFont(ofSize: 24)
+        label.text = "Photos"
+        return label
     }()
     
-    let photo0 = UIImage(named: "Photo-1")
-    let photo1 = UIImage(named: "Photo0")
-    let photo2 = UIImage(named: "Photo2")
-    let photo3 = UIImage(named: "Photo3")
-    let photo4 = UIImage(named: "Photo4")
-    let photo5 = UIImage(named: "Photo5")
-    let photo6 = UIImage(named: "Photo6")
     
-    // Здесь вы можете добавить свой массив фотографий или данные, которые будут отображаться в коллекции
-   public  var photos: [UIImage] = []
+    let photo1ImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Создайте массив фактических изображений в методе viewDidLoad
-         photos = [photo0, photo1, photo2, photo3, photo4, photo5, photo6].compactMap { $0 }
-                
-        // Добавляем коллекцию на экран
-        view.addSubview(collectionView)
-        collectionView.delegate = self
-        collectionView.dataSource = self
+    let photo2ImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         
-        // Устанавливаем constraints для коллекции
+        return imageView
+    }()
+    
+    let photo3ImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+       
+        return imageView
+    }()
+    
+    let photo4ImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
+    }()
+    
+    
+    func configure(with photos: [UIImage?], indexPath: IndexPath) {
+        //  compactMap для удаления опциональных значений из массива
+        let filteredPhotos = photos.compactMap { $0 }
+        
+        if indexPath.row < filteredPhotos.count {
+            photo1ImageView.image = filteredPhotos[indexPath.row]
+        }
+        if indexPath.row + 1 < filteredPhotos.count {
+            photo2ImageView.image = filteredPhotos[indexPath.row + 1]
+        }
+        if indexPath.row + 2 < filteredPhotos.count {
+            photo3ImageView.image = filteredPhotos[indexPath.row + 2]
+        }
+        if indexPath.row + 3 < filteredPhotos.count {
+            photo4ImageView.image = filteredPhotos[indexPath.row + 3]
+        }
+    }
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupSubviews()
+        setupConstraints()
+       
+    }
+   
+    private func setupSubviews() {
+    addSubview(nameLabel)
+    addSubview(photo1ImageView)
+    addSubview(photo2ImageView)
+    addSubview(photo3ImageView)
+    addSubview(photo4ImageView)
+    addSubview(arrowLabel)
+    }
+   
+    private func setupConstraints() {
+        photo1ImageView.layer.cornerRadius = 6
+        photo1ImageView.layer.masksToBounds = true
+        
+        photo2ImageView.layer.cornerRadius = 6
+        photo2ImageView.layer.masksToBounds = true
+        
+        photo3ImageView.layer.cornerRadius = 6
+        photo3ImageView.layer.masksToBounds = true
+        
+        photo4ImageView.layer.cornerRadius = 6
+        photo4ImageView.layer.masksToBounds = true
+        
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
+            
+            photo1ImageView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 12),
+            photo1ImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            photo1ImageView.widthAnchor.constraint(equalToConstant: 70), // Ширина 90
+            photo1ImageView.heightAnchor.constraint(equalToConstant: 70), // Высота
+            
+            photo2ImageView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 12),
+            photo2ImageView.leadingAnchor.constraint(equalTo: photo1ImageView.trailingAnchor, constant: 20),
+            photo2ImageView.widthAnchor.constraint(equalToConstant: 70), // Ширина 90
+            photo2ImageView.heightAnchor.constraint(equalToConstant: 70),
+            
+            photo3ImageView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 12),
+            photo3ImageView.leadingAnchor.constraint(equalTo: photo2ImageView.trailingAnchor, constant: 20),
+            photo3ImageView.widthAnchor.constraint(equalToConstant: 70), // Ширина 90
+            photo3ImageView.heightAnchor.constraint(equalToConstant: 70),
+            
+            photo4ImageView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 12),
+            photo4ImageView.leadingAnchor.constraint(equalTo: photo3ImageView.trailingAnchor, constant: 20),
+            photo4ImageView.widthAnchor.constraint(equalToConstant: 70), // Ширина 90
+            photo4ImageView.heightAnchor.constraint(equalToConstant: 70),
+            
+            arrowLabel.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor),
+            arrowLabel.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 230),
         ])
-        
-        // Настраиваем навигационный бар
-        navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // Скрываем навигационный бар при уходе с экрана
-        navigationController?.setNavigationBarHidden(true, animated: true)
-    }
-    
-    // MARK: - UICollectionViewDataSource
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotosCollectionViewCell", for: indexPath) as! PhotosCollectionViewCell
-        
-        // Настройте содержимое ячейки с фотографией
-        cell.configure(with: photos[indexPath.item])
-        
-        return cell
+
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 }

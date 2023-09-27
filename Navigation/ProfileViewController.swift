@@ -1,70 +1,118 @@
 import UIKit
 
-class ProfileViewController: UIViewController {
-        
-        private let profileView = ProfileView()
-       
-       
-        override func viewDidLoad() {
-            super.viewDidLoad()
-           
-            view.backgroundColor = .lightGray
-            view.addSubview(profileView)
-            profileView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-            profileView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            profileView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            profileView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            ])
-           
-            }
-        private func constraintSetup(){
+class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
+
+    let tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+    private var publications: [Publicantions] = []
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "PhotosCell")
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "Cell")
+        view.addSubview(tableView)
+        tableView.rowHeight = UITableView.automaticDimension
+        constraintSetup()
+        tableView.delegate = self
+        tableView.dataSource = self
+        publications = Publicantions.make()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        tapGesture.delegate = self
+        view.addGestureRecognizer(tapGesture)
+    }
+
+    @objc private func handleTap() {
+        view.endEditing(true)
+    }
+
+    private func constraintSetup() {
         NSLayoutConstraint.activate([
-        profileView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-        profileView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-        profileView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        profileView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
-           
-   
-    
-   
-    
-    
-   
-   
-    
-   
-    
-   
-    
-    
-/*
-            // Ограничения для profileImageView
-               profileImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
-               profileImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-               profileImageView.widthAnchor.constraint(equalToConstant: 100),
-               profileImageView.heightAnchor.constraint(equalToConstant: 100),
-               
-               // Ограничения для nameUser
-               nameUser.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 35),
-               nameUser.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor),
-               
-               // Ограничения для statusLabel
-               statusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-               statusLabel.topAnchor.constraint(equalTo: nameUser.bottomAnchor, constant: 16),
-               
-               // Ограничения для submitButton
-               submitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-               submitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-               submitButton.heightAnchor.constraint(equalToConstant: 50),
-               submitButton.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 20)
-        ])
 
-
+extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
     }
-  
- }*/
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        } else {
+            return publications.count 
+        }
+    }
+
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PhotosCell", for: indexPath) as! PhotosTableViewCell
+            let photos = [UIImage(named: "photo1"), UIImage(named: "photo2"), UIImage(named: "photo3"), UIImage(named: "photo4")]
+            cell.configure(with: photos, indexPath: indexPath)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PostTableViewCell
+            let publication = publications[indexPath.row]
+            cell.configure(with: publication)
+            return cell
+        }
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            let profileView = ProfileView()
+            return profileView
+        }
+        return nil
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 220
+        } else if section == 1 {
+            return 100 //  высоту секции с фотографиями
+        } else {
+            return 0
+        }
+    }
+
+    
+    // Динамический расчет высоты ячеек
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            // Высота ячеек с фотографиями должна быть достаточной для отображения всех фотографий
+            return UITableView.automaticDimension
+        } else {
+            // Высота ячеек с постами должна быть рассчитана на основе их содержимого
+            let publication = publications[indexPath.row]
+            // рассчитать высоту на основе текста и других элементов в ячейке
+            // Возвращаем минимальную высоту, чтобы избежать сворачивания
+            return max(400, estimatedHeightForPublication(publication))
+        }
+    }
+
+    // Функция для оценки высоты ячейки с постом на основе ее содержимого
+    private func estimatedHeightForPublication(_ publication: Publicantions) -> CGFloat {
+        // Рассчитайте высоту на основе содержимого вашей ячейки (текста, изображений и т. д.)
+        // Верните вычисленную высоту
+        return 400// Здесь возвращается минимальная высота в примере
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if indexPath.section == 0 { // Проверяем, что нажата секция с фотографиями
+            let photosVC = PhotosViewController() 
+            navigationController?.pushViewController(photosVC, animated: true) // Переходим на экран PhotosViewController
+        }
+        
+    }
+}

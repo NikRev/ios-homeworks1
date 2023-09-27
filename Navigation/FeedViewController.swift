@@ -24,8 +24,9 @@ class FeedViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    @objc private func showPost() {
-        let post = Post (title: "Заголовок поста")
+    
+    @objc public func showPost() {
+        let post = Post1 (title: "Заголовок поста")
 
         let postViewContorlller = PostViewController(post: post)
         navigationController?.pushViewController(postViewContorlller, animated: true)

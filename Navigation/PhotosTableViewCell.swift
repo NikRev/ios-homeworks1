@@ -108,6 +108,7 @@ class PhotosTableViewCell: UITableViewCell {
             photo1ImageView.widthAnchor.constraint(equalToConstant: 70), // Ширина 90
             photo1ImageView.heightAnchor.constraint(equalToConstant: 70), // Высота
             
+            
             photo2ImageView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 12),
             photo2ImageView.leadingAnchor.constraint(equalTo: photo1ImageView.trailingAnchor, constant: 20),
             photo2ImageView.widthAnchor.constraint(equalToConstant: 70), // Ширина 90
@@ -124,7 +125,7 @@ class PhotosTableViewCell: UITableViewCell {
             photo4ImageView.heightAnchor.constraint(equalToConstant: 70),
             
             arrowLabel.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor),
-            arrowLabel.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 230),
+            arrowLabel.trailingAnchor.constraint(equalTo: nameLabel.leadingAnchor, constant: 350),
         ])
     }
 

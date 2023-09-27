@@ -25,10 +25,12 @@
 		556C8C2A2AAF6208007CFE15 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C8C292AAF6208007CFE15 /* Checker.swift */; };
 		556C8C2C2AAF6A95007CFE15 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C8C2B2AAF6A95007CFE15 /* LoginInspector.swift */; };
 		556C8C2E2AAF71D6007CFE15 /* MyLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C8C2D2AAF71D6007CFE15 /* MyLoginFactory.swift */; };
+		557D1DEB2AC45786008DE9FE /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557D1DEA2AC45786008DE9FE /* PhotosTableViewCell.swift */; };
+		557D1DED2AC4579E008DE9FE /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557D1DEC2AC4579E008DE9FE /* PhotosCollectionViewCell.swift */; };
+		557D1DEF2AC457B6008DE9FE /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557D1DEE2AC457B6008DE9FE /* PhotosViewController.swift */; };
 		558B104C2A56EDC10030A343 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558B104B2A56EDC10030A343 /* ProfileView.swift */; };
 		55D2FFAD2A81137E00EC448B /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D2FFAC2A81137E00EC448B /* PaddedTextField.swift */; };
 		55DB0B8B2AB32AAC0039C821 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 55DB0B8A2AB32AAC0039C821 /* iOSIntPackage */; };
-		55DB0B8D2AB32CB40039C821 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DB0B8C2AB32CB40039C821 /* PhotosViewController.swift */; };
 		55F434372A2E29E80062F561 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F434362A2E29E80062F561 /* InfoViewController.swift */; };
 		55FC240F2A8A355500181A38 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FC240E2A8A355500181A38 /* CurrentUserService.swift */; };
 /* End PBXBuildFile section */
@@ -76,9 +78,11 @@
 		556C8C292AAF6208007CFE15 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		556C8C2B2AAF6A95007CFE15 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		556C8C2D2AAF71D6007CFE15 /* MyLoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLoginFactory.swift; sourceTree = "<group>"; };
+		557D1DEA2AC45786008DE9FE /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
+		557D1DEC2AC4579E008DE9FE /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		557D1DEE2AC457B6008DE9FE /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		558B104B2A56EDC10030A343 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		55D2FFAC2A81137E00EC448B /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
-		55DB0B8C2AB32CB40039C821 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		55F434342A2E24BC0062F561 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		55F434362A2E29E80062F561 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		55FC240E2A8A355500181A38 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
@@ -139,7 +143,9 @@
 				556C8C292AAF6208007CFE15 /* Checker.swift */,
 				556C8C2B2AAF6A95007CFE15 /* LoginInspector.swift */,
 				556C8C2D2AAF71D6007CFE15 /* MyLoginFactory.swift */,
-				55DB0B8C2AB32CB40039C821 /* PhotosViewController.swift */,
+				557D1DEA2AC45786008DE9FE /* PhotosTableViewCell.swift */,
+				557D1DEC2AC4579E008DE9FE /* PhotosCollectionViewCell.swift */,
+				557D1DEE2AC457B6008DE9FE /* PhotosViewController.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -227,20 +233,22 @@
 				556C8C2E2AAF71D6007CFE15 /* MyLoginFactory.swift in Sources */,
 				5509ABCE2A71B72B003D3E94 /* PostTableViewCell.swift in Sources */,
 				55478E8E2A2C9FD700D07C69 /* ViewController.swift in Sources */,
+				557D1DED2AC4579E008DE9FE /* PhotosCollectionViewCell.swift in Sources */,
 				55478E8A2A2C9FD700D07C69 /* AppDelegate.swift in Sources */,
 				556C8C2C2AAF6A95007CFE15 /* LoginInspector.swift in Sources */,
 				5509ABCF2A7BAAAD003D3E94 /* Post.swift in Sources */,
 				55FC240F2A8A355500181A38 /* CurrentUserService.swift in Sources */,
 				556C8C2A2AAF6208007CFE15 /* Checker.swift in Sources */,
 				55478EA42A2CB4D800D07C69 /* FeedViewController.swift in Sources */,
+				557D1DEF2AC457B6008DE9FE /* PhotosViewController.swift in Sources */,
 				556B3FD52A67EA4F00F8571E /* ColorSet.swift in Sources */,
 				551313872A8793BF00493490 /* User.swift in Sources */,
 				5509ABCA2A7131F1003D3E94 /* Publications.swift in Sources */,
 				556B3FD92A67F56300F8571E /* ProfileViewController.swift in Sources */,
+				557D1DEB2AC45786008DE9FE /* PhotosTableViewCell.swift in Sources */,
 				55F434372A2E29E80062F561 /* InfoViewController.swift in Sources */,
 				551A6C372A8CDFD800509673 /* TestUserService.swift in Sources */,
 				556B3FD32A67E33C00F8571E /* LogInViewController.swift in Sources */,
-				55DB0B8D2AB32CB40039C821 /* PhotosViewController.swift in Sources */,
 				55478E8C2A2C9FD700D07C69 /* SceneDelegate.swift in Sources */,
 				55D2FFAD2A81137E00EC448B /* PaddedTextField.swift in Sources */,
 			);

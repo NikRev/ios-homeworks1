@@ -8,19 +8,8 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         return tableView
     }()
    
-    
     private var publications: [Publicantions] = []
-
-    
-
-
-    var currentUser: User? {
-           didSet {
-               // Когда устанавливается новое значение для currentUser,
-               // обновляем отображение данных на экране
-               updateHeaderView()
-           }
-       }
+    var currentUser: User?
     
     override func viewDidLoad() {
            super.viewDidLoad()
@@ -32,21 +21,11 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
            tableView.delegate = self
            tableView.dataSource = self
            publications = Publicantions.make()
-           let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-           tapGesture.delegate = self
-           view.addGestureRecognizer(tapGesture)
        }
 
 
-    public func updateHeaderView() {
-        if let user = currentUser, let profileView = tableView.headerView(forSection: 0) as? ProfileView {
-            profileView.setUserData(user: user)
-        }
-    }
-   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateHeaderView()
     }
 
     @objc private func handleTap() {

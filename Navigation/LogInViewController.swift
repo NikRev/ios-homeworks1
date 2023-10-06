@@ -5,9 +5,6 @@ class LogInViewController: UIViewController {
     let paddedTextField = PaddedTextField()
     var loginDelegate:LoginViewControllerDelegate?
 
-   
-
-    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = true
@@ -68,15 +65,12 @@ class LogInViewController: UIViewController {
         return textField
     }()
     
-    private let buttonVk: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Log In", for: .normal)
-        button.setTitleColor(.white, for: .normal)
+    
+    let buttonVk: CustomButton = {
+        let button = CustomButton(customBackgroundColor: nil, title: "Log In", titleColor: .white, cornerRadius: 10)
         button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 10 // Установите радиус скругления непосредственно у кнопки
-        button.clipsToBounds = true // Обрезать содержимое кнопки, чтобы соответствовать радиусу скругления
+        button.addTarget(self, action: #selector(buttonLogFunc), for: .touchUpInside)
+        button.clipsToBounds = true // обрезать содержимое кнопки
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

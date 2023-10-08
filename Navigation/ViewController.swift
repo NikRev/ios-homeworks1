@@ -11,9 +11,9 @@ class ViewController: UIViewController {
 
    
 
-       override func viewDidLoad() {
+      public override func viewDidLoad() {
            super.viewDidLoad()
-           
+           title = "Profile"
            
        }
        

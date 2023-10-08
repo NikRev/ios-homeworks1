@@ -28,12 +28,12 @@ class InfoViewController: UIViewController {
         let alertController = UIAlertController(title: "Сообщение", message: "Привет", preferredStyle: .alert)
         
         let action1 = UIAlertAction(title: "Сообщение номер раз", style: .default){[weak self] _ in
-            guard let self = self else { return }
+            guard self != nil else { return }
             print("Сообщение 1")
         }
         
         let action2 = UIAlertAction (title: "Сообщение номер два", style: .default){ [weak self] _ in
-            guard let self = self else { return }
+            guard self != nil else { return }
             print("Сообщение 2")
         }
             alertController.addAction(action1)
@@ -42,14 +42,4 @@ class InfoViewController: UIViewController {
         }
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-
+   

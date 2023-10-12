@@ -1,37 +1,27 @@
 import UIKit
 
 class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
-
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-   
-    private var publications: [Publicantions] = []
-    var currentUser: User?
-    
+   private var viewModel: ProfileViewModel = ProfileViewModel()
+
+
     override func viewDidLoad() {
-           super.viewDidLoad()
-           tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "PhotosCell")
-           tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "Cell")
-           view.addSubview(tableView)
-           tableView.rowHeight = UITableView.automaticDimension
-           constraintSetup()
-           tableView.delegate = self
-           tableView.dataSource = self
-           publications = Publicantions.make()
-       }
+        super.viewDidLoad()
+        viewModel = ProfileViewModel()
 
+        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "PhotosCell")
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "Cell")
+        view.addSubview(tableView)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.delegate = self
+        tableView.dataSource = self
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        constraintSetup()
     }
-
-    @objc private func handleTap() {
-            // End editing on the text field to dismiss the keyboard
-            view.endEditing(true)
-        }
 
     private func constraintSetup() {
         NSLayoutConstraint.activate([
@@ -41,22 +31,16 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return viewModel.numberOfSections()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        } else {
-            return publications.count
-        }
+        return viewModel.numberOfRowsInSection(section: section)
     }
-
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
@@ -66,15 +50,17 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PostTableViewCell
-            let publication = publications[indexPath.row]
+            let publicationViewModel = viewModel.publicationViewModel(at: indexPath)
+            let publication = Publications(author: publicationViewModel.publication.author, description: publicationViewModel.publication.description, image: publicationViewModel.publication.image, views: publicationViewModel.publication.views, likes: publicationViewModel.publication.likes)
             cell.configure(with: publication)
             return cell
+
         }
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            let profileView = ProfileView()
+            let profileView = ProfileView(profileViewModel: self.viewModel)
             return profileView
         }
         return nil
@@ -84,41 +70,29 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         if section == 0 {
             return 220
         } else if section == 1 {
-            return 100 //  высоту секции с фотографиями
+            return 100
         } else {
             return 0
         }
     }
 
-    
-    // Динамический расчет высоты ячеек
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            // Высота ячеек с фотографиями должна быть достаточной для отображения всех фотографий
             return UITableView.automaticDimension
         } else {
-            // Высота ячеек с постами должна быть рассчитана на основе их содержимого
-            let publication = publications[indexPath.row]
-            // рассчитать высоту на основе текста и других элементов в ячейке
-            // Возвращаем минимальную высоту, чтобы избежать сворачивания
-            return max(400, estimatedHeightForPublication(publication))
+            let publicationViewModel = viewModel.publicationViewModel(at: indexPath)
+            return max(400, viewModel.estimatedHeightForPublication(publicationViewModel.publication))
         }
     }
 
-    // Функция для оценки высоты ячейки с постом на основе ее содержимого
-    private func estimatedHeightForPublication(_ publication: Publicantions) -> CGFloat {
-        // Рассчитайте высоту на основе содержимого вашей ячейки (текста, изображений и т. д.)
-        // Верните вычисленную высоту
-        return 400// Здесь возвращается минимальная высота в примере
-    }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        if indexPath.section == 0 { // Проверяем, что нажата секция с фотографиями
+
+        if indexPath.section == 0 {
             let photosVC = PhotosViewController()
-            navigationController?.pushViewController(photosVC, animated: true) // Переходим на экран PhotosViewController
+            navigationController?.pushViewController(photosVC, animated: true)
         }
-        
     }
 }
+

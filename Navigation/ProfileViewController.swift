@@ -6,7 +6,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-   private var viewModel: ProfileViewModel = ProfileViewModel()
+    var viewModel: ProfileViewModel = ProfileViewModel()
 
 
     override func viewDidLoad() {

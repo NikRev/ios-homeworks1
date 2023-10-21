@@ -1,6 +1,8 @@
 import UIKit
 
 class ProfileView: UIView {
+    
+    private var profileViewModel: ProfileViewModel
 
     public let profileImageView: UIImageView = {
         let imageView = UIImageView()
@@ -58,13 +60,23 @@ class ProfileView: UIView {
         return button
     }()
 
-    init() {
+    init(profileViewModel: ProfileViewModel) {
+        self.profileViewModel = profileViewModel
         super.init(frame: .zero)
         setupSubviews()
         setupConstraints()
         setupGestureRecognizers()
-        submitButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        setUserData()
+        submitButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside) // Добавляем обработчик для кнопки
+
     }
+  
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "userStatus", let newStatus = change?[.newKey] as? String {
+            setStatus(newStatus)
+        }
+    }
+    
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -78,9 +90,9 @@ class ProfileView: UIView {
         addSubview(submitButton)
     }
     
-    func setUserData(user: User) {
-           nameLabel.text = user.userName
-           profileImageView.image = user.avatar
+    func setUserData() {
+           nameLabel.text = profileViewModel.userName
+        profileImageView.image = UIImage(named: (profileViewModel.user?.avatar ?? "profile_image" as NSObject) as! String)
     }
 
     private func setupConstraints() {
@@ -114,6 +126,12 @@ class ProfileView: UIView {
             submitButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             submitButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+
+        // Устанавливаем текст из ProfileViewModel в поле ввода и в label статуса
+        setStatus(profileViewModel.userStatus)
+
+        // Подписываемся на изменения текста в поле ввода
+        statusTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
 
     private func setupGestureRecognizers() {
@@ -125,11 +143,13 @@ class ProfileView: UIView {
         let alertController = UIAlertController(title: "Введите текст", message: nil, preferredStyle: .alert)
         alertController.addTextField { textField in
             textField.placeholder = "Статус"
+            textField.text = self.statusLabel.text
         }
         let submitAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
             guard let textField = alertController.textFields?.first else { return }
             self?.statusLabel.text = textField.text
             self?.statusTextField.text = textField.text
+            self?.profileViewModel.updateUserStatus(newStatus: textField.text ?? "")
         }
         alertController.addAction(submitAction)
 
@@ -140,7 +160,13 @@ class ProfileView: UIView {
 
     @objc private func buttonPressed() {
         guard let status = statusTextField.text else { return }
-        statusLabel.text = status
+        profileViewModel.updateUserStatus(newStatus: status) // Вызываем метод обновления статуса в ProfileViewModel
+    }
+
+    @objc private func textFieldDidChange(_ textField: UITextField) {
+        if let text = textField.text {
+            profileViewModel.updateUserStatus(newStatus: text) // Обновляем статус в ProfileViewModel при изменении текста в поле ввода
+        }
     }
 
     // Method to set initial status in both label and text field
@@ -148,6 +174,5 @@ class ProfileView: UIView {
         statusLabel.text = status
         statusTextField.text = status
     }
-
-    
 }
+

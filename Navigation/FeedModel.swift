@@ -1,5 +1,5 @@
 import Foundation
-import UIKit
+
 
 extension Notification.Name {
     static let wordCheckResult = Notification.Name("WordCheckResult")

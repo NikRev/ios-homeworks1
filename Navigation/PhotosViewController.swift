@@ -3,7 +3,9 @@ import iOSIntPackage
 
 class PhotosViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    private let imagePublisherFacade = ImagePublisherFacade()
+   // private let imagePublisherFacade = ImagePublisherFacade()
+    private var myPhotos: [UIImage] = []
+   
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -29,7 +31,9 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         setupCollectionView()
         setupNavigationBar()
-        setupImagePublisher()
+     
+        
+        processImage()
     }
     
     // MARK: - Setup Methods
@@ -52,12 +56,79 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
         title = "Photo Gallery"
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
-    
+   
+   
     private func setupImagePublisher() {
-        imagePublisherFacade.subscribe(self)
-        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 4)
+        //imagePublisherFacade.subscribe(self)
+      //  imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 4)
+     
+    }
+   
+ 
+    private func applyFilterToImage(image: UIImage) -> UIImage? {
+        let context = CIContext(options: nil)
+        if let coreImage = CIImage(image: image) {
+            let filter = CIFilter(name: "CIPhotoEffectNoir")
+            filter?.setValue(coreImage, forKey: kCIInputImageKey)
+
+            if let filteredImage = filter?.outputImage {
+                if let cgImage = context.createCGImage(filteredImage, from: filteredImage.extent) {
+                    return UIImage(cgImage: cgImage)
+                }
+            }
+        }
+        return nil
     }
     
+    private func processImage() {
+        let images2: [UIImage] = [
+            UIImage(named: "photo1")!,
+            UIImage(named: "photo2")!,
+            UIImage(named: "photo3")!,
+            UIImage(named: "photo4")!
+        
+        ]
+        // Вызываем processImagesOnThread и передаем ей массив изображений с фильтрами
+        processImagesOnThread(images: images2, applyFilter: true)
+    }
+
+    
+    private func processImagesOnThread(images: [UIImage], applyFilter: Bool) {
+        let semaphore = DispatchSemaphore(value: 0) // Создаем семафор с начальным значением 0
+        var myPhotos: [UIImage] = []
+        
+        let queue = DispatchQueue.global(qos: .userInteractive) // Создаем глобальную очередь с приоритетом .userInitiated
+
+        let start = DispatchTime.now() // Запускаем таймер до выполнения метода
+
+        queue.async {
+            for image in images {
+                if applyFilter, let processedImage = self.applyFilterToImage(image: image) {
+                    myPhotos.append(processedImage)
+                } else {
+                    myPhotos.append(image)
+                }
+            }
+
+            semaphore.signal() // Сигнализируем о завершении
+        }
+
+        semaphore.wait() // Ждем, пока семафор получит сигнал
+
+        let end = DispatchTime.now() // Завершаем таймер после выполнения метода
+        let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds
+        let timeInterval = Double(nanoTime) / 1_000_000_000 // Время в секундах
+
+        print("Время выполнения processImagesOnThread: \(timeInterval) секунд")
+
+        DispatchQueue.main.async {
+            self.photoArray = myPhotos
+            self.collectionView.reloadData()
+        }
+    }
+
+
+
     // MARK: - UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -84,6 +155,7 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
 }
 
+/*
 // Расширение для реализации метода receive(images:)
 extension PhotosViewController: ImageLibrarySubscriber {
     func receive(images: [UIImage]) {
@@ -91,3 +163,4 @@ extension PhotosViewController: ImageLibrarySubscriber {
         collectionView.reloadData()
     }
 }
+*/

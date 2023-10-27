@@ -10,7 +10,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: windowScene)
        
-        let loginFactory = MyLoginFactory()
+        _ = MyLoginFactory()
                
       //фабрику для создания LoginInspector
      //  let loginInspector = loginFactory.makeLoginInspector()

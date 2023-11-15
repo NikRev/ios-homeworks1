@@ -1,44 +1,52 @@
 import Foundation
 
-struct JsonCodableDataTask{
+struct JsonCodableDataTask {
     
-    enum fetchPlanetResualt{
+    enum FetchPlanetResult {
         case success(JsonCodableModel)
         case failure(Error)
     }
     
-    func fetchPlanet(comletion: @escaping(fetchPlanetResualt) ->Void){
+    func fetchPlanet(completion: @escaping (FetchPlanetResult) -> Void) {
         let urlPlanet = URL(string: "https://swapi.dev/api/planets/1")!
         var request = URLRequest(url: urlPlanet)
         request.httpMethod = "GET"
-        let session = URLSession.shared
         
-        let task = session.dataTask(with: request){(data,responce, error) in
-           //проверка соеденения с интернетом
-            if let error = error{
-                comletion(.failure(error))
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            // Проверка соединения с интернетом
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            // Проверка HTTP-статуса
+            if let httpResponse = response as? HTTPURLResponse,
+               !(200...299).contains(httpResponse.statusCode) {
+                let error = NSError(domain: "HTTPError", code: httpResponse.statusCode, userInfo: nil)
+                completion(.failure(error))
                 return
             }
             
             guard let data = data else {
-                comletion(.failure(print("Нет данных") as! Error))
+                let error = NSError(domain: "NoDataError", code: 0, userInfo: nil)
+                completion(.failure(error))
                 return
             }
             
-            do{
+            do {
                 // Декодирование JSON данных в модель
                 let jsonModel = try JSONDecoder().decode(JsonCodableModel.self, from: data)
-                comletion(.success(jsonModel))
+                DispatchQueue.main.async {
+                    completion(.success(jsonModel))
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
             }
-            catch{
-                comletion(.failure(error))
-            }
-           
         }
+        
         // Запуск задачи
         task.resume()
     }
-    
-    
-    
 }

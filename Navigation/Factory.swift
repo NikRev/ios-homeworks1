@@ -5,6 +5,7 @@ final class Factory {
         case first
         case second
         case third
+        case fourth
     }
 
     private let flow: Flow
@@ -27,6 +28,8 @@ final class Factory {
             return FeedCoordinator(navigationController: navigationController)
         case .third:
             return LogInCoordinator(navigationController: navigationController)
+        case .fourth:
+            return InfoCoordinator(navigationController: navigationController)
         }
     }
    

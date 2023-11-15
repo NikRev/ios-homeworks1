@@ -93,7 +93,7 @@ class PostTableViewCell: UITableViewCell {
 
 
 
-    public func configure(with publication: Publicantions) {
+    public func configure(with publication: Publications) {
         // Настройка содержимого ячейки на основе данных публикации
         postImageView.image = UIImage(named: publication.image)
         likesLabel.text = "Likes: \(publication.likes)"

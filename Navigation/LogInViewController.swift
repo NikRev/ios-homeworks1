@@ -1,9 +1,13 @@
 import UIKit
 
+
+
 class LogInViewController: UIViewController {
     let colorSet = UIColor(named: "ColorSet")
     let paddedTextField = PaddedTextField()
-    var loginDelegate:LoginViewControllerDelegate?
+    weak var loginDelegate:LoginViewControllerDelegate?
+    
+   
 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -12,6 +16,17 @@ class LogInViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
+   
+    let buttonRegister: CustomButton = {
+        let button = CustomButton(customBackgroundColor: .gray, title: "Register", titleColor: .white, cornerRadius: 10)
+      //  button.setBackgroundImage(UIImage(named: "green_pixel"), for: .normal)
+        button.addTarget(self, action: #selector(buttonRegisterFunc), for: .touchUpInside)
+        button.backgroundColor = .gray
+        button.clipsToBounds = true // обрезать содержимое кнопки
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
     
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -89,6 +104,8 @@ class LogInViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         self.view.addGestureRecognizer(tapGesture)
 
+        buttonRegister.addTarget(self, action: #selector(buttonRegisterFunc), for: .touchUpInside)
+
         buttonVk.addTarget(self, action: #selector(buttonLogFunc), for: .touchUpInside)
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
@@ -99,10 +116,11 @@ class LogInViewController: UIViewController {
         setupAdd()
         setupConstraints()
         setupKeyboardObservers()
+       
 
     }
 
-   
+    
     override func viewWillDisappear(_ animated: Bool) {
            super.viewWillDisappear(animated)
            removeKeyboardObservers()
@@ -129,7 +147,39 @@ class LogInViewController: UIViewController {
             scrollView.scrollRectToVisible(visibleRect, animated: true)
            }
     }
+    
+    @objc private func buttonRegisterFunc() {
+        guard let loginText = loginTextField.text, !loginText.isEmpty,
+              let passwordText = passwordTextField.text, !passwordText.isEmpty else {
+            self.showAlert(title: "Error", message: "Please enter both login and password")
+            return
+        }
 
+        loginDelegate?.checkCredentials(email: loginText, password: passwordText) { [weak self] success, errorDescription in
+            guard let self = self else { return }
+
+            if success {
+                // Authentication successful, proceed with registration
+                self.loginDelegate?.signUp(email: loginText, password: passwordText) { signUpSuccess, signUpErrorDescription in
+                    if signUpSuccess {
+                        // Registration successful, navigate to the next screen
+                        let profileViewController = ProfileViewController()
+                        self.navigationController?.pushViewController(profileViewController, animated: true)
+                    } else {
+                        // Registration error, show an alert with the error description
+                        self.showAlert(title: "Registration Error", message: signUpErrorDescription ?? "Unknown error during registration")
+                    }
+                }
+            } else {
+                // Authentication error, show an alert with the error description
+                self.showAlert(title: "Authentication Error", message: errorDescription ?? "Invalid credentials")
+            }
+        }
+    }
+
+    
+    
+    
     @objc func willHideKeyboard(_ notification: NSNotification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
@@ -137,29 +187,30 @@ class LogInViewController: UIViewController {
 
     
     @objc private func buttonLogFunc() {
-        if let loginText = loginTextField.text, !loginText.isEmpty {
-            
-        #if DEBUG
-        let service = TestUserService()
-        #else
-        let service = CurrentUserService()
-        #endif
-        let authenticatedUser = service.authenticateUser(login: loginText)
-            
-            let isLoginValid = loginDelegate?.check(login: 1234, password: 1234) ?? (authenticatedUser != nil)
-        // Попытка аутентификации пользователя
-        if isLoginValid  {
-            _ = ProfileViewController()
-            tabBarController?.selectedIndex = 2
-        } else {
-            let alert = UIAlertController(title: "Ошибка", message: "Пользователь с таким логином не найден", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
+        guard let loginText = loginTextField.text, !loginText.isEmpty,
+              let passwordText = passwordTextField.text, !passwordText.isEmpty else {
+            self.showAlert(title: "Login Error", message: "Please enter both login and password")
+            return
+        }
+        
+        loginDelegate?.checkCredentials(email: loginText, password: passwordText) { [unowned self] success, errorDescription in
+            if success {
+                // Authentication successful
+                let profileViewController = ProfileViewController()
+                self.navigationController?.pushViewController(profileViewController, animated: true)
+            } else {
+                // Authentication error, show an alert with the error description
+                self.showAlert(title: "Login Error", message: errorDescription ?? "Unknown error during Login")
             }
         }
     }
 
-
+    private func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
 
 
 
@@ -178,12 +229,14 @@ class LogInViewController: UIViewController {
         scrollView.addSubview(stackView)
         scrollView.addSubview(imageVK)
         scrollView.addSubview(buttonVk)
+        scrollView.addSubview(buttonRegister)
         view.addSubview(scrollView)
         view.addSubview(imageVK)
         view.addSubview(buttonVk)
-        
+        view.addSubview(buttonRegister)
         stackView.addArrangedSubview(loginTextField)
         stackView.addArrangedSubview(passwordTextField)
+        
     }
 
     
@@ -209,7 +262,12 @@ class LogInViewController: UIViewController {
             buttonVk.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16),
             buttonVk.heightAnchor.constraint(equalToConstant: 50),
             buttonVk.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            buttonVk.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            buttonVk.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            
+            buttonRegister.topAnchor.constraint(equalTo: buttonVk.bottomAnchor, constant: 16),
+            buttonRegister.heightAnchor.constraint(equalToConstant: 50),
+            buttonRegister.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            buttonRegister.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ])
     }
 }
@@ -229,3 +287,6 @@ extension LogInViewController: UITextFieldDelegate {
         return true
     }
 }
+
+
+

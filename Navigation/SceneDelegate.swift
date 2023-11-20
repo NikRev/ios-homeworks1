@@ -1,5 +1,7 @@
 import UIKit
 import Foundation
+import Firebase
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -20,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let window = UIWindow(windowScene: windowScene)
        
-        _ = MyLoginFactory()
+       // _ = MyLoginFactory()
                
       
         let mainTabBArController = MainTabBarConroller()
@@ -29,4 +31,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = window
     }
+    
+    func sceneDidDisconnect(_ scene: UIScene) {
+           // Вызов метода разлогинивания пользователя
+           do {
+               try Auth.auth().signOut()
+           } catch let signOutError as NSError {
+               print ("Error signing out: %@", signOutError)
+           }
+       }
 }

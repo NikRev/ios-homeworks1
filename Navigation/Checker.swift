@@ -1,22 +1,57 @@
 import UIKit
+import FirebaseAuth
 
-protocol LoginViewControllerDelegate{
-    func check(login:Int,password:Int)->Bool
+
+
+
+protocol LoginViewControllerDelegate: AnyObject {
+    func checkCredentials(email: String, password: String, completion: @escaping (Bool, String?) -> Void)
+    func signUp(email: String, password: String, completion: @escaping (Bool, String?) -> Void)
+}
+
+protocol CheckerServiceProtocol{
+    func signUp(email:String,password:String,complition: @escaping (Bool, String?)->Void)
+    func checkCredentials(email:String,password:String,complition: @escaping (Bool, String?)->Void)
+    
 }
 
 
-final class Checker {
+final class Checker:CheckerServiceProtocol {
+    private func isValidEmail(_ email: String) -> Bool {
+           return email.contains("@") && email.contains(".")
+       }
 
-    private let login: Int = 1234
-    private let password: Int = 1234
-
+    private func isValidPassword(_ password: String) -> Bool {
+           return password.count >= 6  // For example, require a minimum of 6 characters
+       }
     
-    static let shared = Checker()
+    func checkCredentials(email: String, password: String, complition completion: @escaping (Bool, String?) -> Void) {
+           Auth.auth().signIn(withEmail: email, password: password) { result, error in
+               if let error = error {
+                   completion(false, error.localizedDescription)
+                   return
+               }
 
-    private init() {}
+               if let _ = result {
+                   completion(true, nil)
+               }
+           }
+       }
 
-    func check(login: Int, password: Int) -> Bool {
-        return self.login == login && self.password == password
-    }
+    func signUp(email: String, password: String, complition completion: @escaping (Bool, String?) -> Void) {
+           Auth.auth().createUser(withEmail: email, password: password) { result, error in
+               if let error = error {
+                   completion(false, error.localizedDescription)
+                   return
+               }
+
+               if let _ = result {
+                   completion(true, nil)
+               }
+           }
+       }
+       enum AuthError: Error {
+           case invalidCredentials
+       }
 }
 

@@ -9,9 +9,10 @@ class InfoCoordinator: Coordinator {
 
     func start() {
         let infoViewController = InfoViewController()
-        infoViewController.title = "Инфо"
+        infoViewController.title = NSLocalizedString("Info", comment: "")
         let infoImage = UIImage(systemName: "info.bubble")
-        infoViewController.tabBarItem = UITabBarItem(title: "Инфо", image: infoImage, tag: 4)
+        infoViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("Info", comment: ""), image: infoImage, tag: 4)
         navigationController.setViewControllers([infoViewController], animated: true)
     }
+
 }

@@ -9,11 +9,12 @@ class LogInCoordinator:Coordinator{
     
     func start() {
         let logInViewController = LogInViewController()
-        logInViewController.title = "Log In"
+        logInViewController.title = NSLocalizedString("LogIn", comment: "")
         let logInImage = UIImage(systemName: "person.crop.square.filled.and.at.rectangle.fill")
-        logInViewController.tabBarItem = UITabBarItem(title: "Log In", image: logInImage, tag: 2)
+        logInViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("LogIn", comment: ""), image: logInImage, tag: 2)
         navigationController.setViewControllers([logInViewController], animated: true)
     }
+
     
     
 }

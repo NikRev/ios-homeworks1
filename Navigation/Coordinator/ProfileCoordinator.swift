@@ -15,9 +15,10 @@ class ProfileCoordinator: Coordinator {
 
     func start() {
         let profileViewController = ProfileViewController()
-        profileViewController.title = "Профиль"
+        profileViewController.title = NSLocalizedString("Profile", comment: "")
         let profileImage = UIImage(systemName: "person.circle.fill")
-        profileViewController.tabBarItem = UITabBarItem(title: "Профиль", image: profileImage, tag: 0)
+        profileViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("Profile", comment: ""), image: profileImage, tag: 0)
         navigationController.setViewControllers([profileViewController], animated: true)
     }
+
 }

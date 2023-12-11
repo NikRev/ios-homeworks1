@@ -9,9 +9,9 @@ class FeedCoordinator: Coordinator {
 
     func start() {
         let feedViewController = FeedViewController()
-        feedViewController.title = "Лента"
+        feedViewController.title = NSLocalizedString("Feed", comment: "")
         let feedImage = UIImage(systemName: "house.fill")
-        feedViewController.tabBarItem = UITabBarItem(title: "Лента", image: feedImage, tag: 1)
+        feedViewController.tabBarItem = UITabBarItem(title: NSLocalizedString("Feed", comment: ""), image: feedImage, tag: 1)
         navigationController.setViewControllers([feedViewController], animated: true)
     }
 }

@@ -50,7 +50,7 @@ class FavoriteCell: UITableViewCell {
     
     func configure(with title: String, author: String, imageURL: String) {
         titleLabel.text = title
-        authorLabel.text = "Author: \(author)"
+        authorLabel.text = "\(author)"
         // Дополнительная конфигурация, если необходимо
     }
 }

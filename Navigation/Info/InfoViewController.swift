@@ -57,10 +57,11 @@ class InfoViewController: UIViewController {
                 DispatchQueue.main.async {
                     // Отображаем orbital_period в orbitalPeriodLabel
                     if let orbitalPeriod = jsonModel.orbitalPeriod, !orbitalPeriod.isEmpty {
-                        self.orbitalPeriodLabel.text = "Орбитальный период: \(orbitalPeriod)"
+                        self.orbitalPeriodLabel.text = NSLocalizedString("Orbital Period", comment: "") + ": \(orbitalPeriod)"
                     } else {
-                        self.orbitalPeriodLabel.text = "Орбитальный период не доступен"
+                        self.orbitalPeriodLabel.text = NSLocalizedString("Orbital Period not available", comment: "")
                     }
+
 
                 }
             case .failure(let error):
@@ -68,11 +69,10 @@ class InfoViewController: UIViewController {
             }
         }
 
-        // Установка текста UILabel из значения поля title
-        titleLabel.text = "Значение title"
+        titleLabel.text = NSLocalizedString("Title Value", comment: "")
 
         let showAlertButton = UIButton(type: .system)
-        showAlertButton.setTitle("Я кнопка показа alert", for: .normal)
+        showAlertButton.setTitle(NSLocalizedString("I'm an alert button", comment: ""), for: .normal)
         showAlertButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
         showAlertButton.translatesAutoresizingMaskIntoConstraints = false
 
@@ -84,17 +84,20 @@ class InfoViewController: UIViewController {
     }
 
     @objc private func showAlert() {
-        let alertController = UIAlertController(title: "Сообщение", message: "Привет", preferredStyle: .alert)
+        let alertController = UIAlertController(title: NSLocalizedString("Message", comment: ""),
+                                                message: NSLocalizedString("Hello", comment: ""),
+                                                preferredStyle: .alert)
 
-        let action1 = UIAlertAction(title: "Сообщение номер раз", style: .default) { [weak self] _ in
+        let action1 = UIAlertAction(title: NSLocalizedString("Message Number One", comment: ""), style: .default) { [weak self] _ in
             guard self != nil else { return }
-            print("Сообщение 1")
+            print("Message 1")
         }
 
-        let action2 = UIAlertAction(title: "Сообщение номер два", style: .default) { [weak self] _ in
+        let action2 = UIAlertAction(title: NSLocalizedString("Message Number Two", comment: ""), style: .default) { [weak self] _ in
             guard self != nil else { return }
-            print("Сообщение 2")
+            print("Message 2")
         }
+
         alertController.addAction(action1)
         alertController.addAction(action2)
         present(alertController, animated: true, completion: nil)

@@ -15,8 +15,9 @@ class ProfileViewModel {
     }
 
     var userStatus: String {
-        return user?.status ?? "Что у вас нового?"
+        return user?.status ?? NSLocalizedString("What's new with you?", comment: "")
     }
+
 
    
       

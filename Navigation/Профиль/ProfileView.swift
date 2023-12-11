@@ -1,4 +1,5 @@
 import UIKit
+import Foundation
 
 class ProfileView: UIView {
     
@@ -48,7 +49,7 @@ class ProfileView: UIView {
 
     private let submitButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Set Status", for: .normal)
+        button.setTitle(NSLocalizedString("set_status", comment: ""), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .blue
         button.layer.cornerRadius = 4
@@ -59,6 +60,7 @@ class ProfileView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+
 
     init(profileViewModel: ProfileViewModel) {
         self.profileViewModel = profileViewModel
@@ -140,9 +142,9 @@ class ProfileView: UIView {
     }
 
     @objc private func statusLabelTapped() {
-        let alertController = UIAlertController(title: "Введите текст", message: nil, preferredStyle: .alert)
-        alertController.addTextField { textField in
-            textField.placeholder = "Статус"
+        let alertController = UIAlertController(title: NSLocalizedString("enter_text", comment: ""), message: nil, preferredStyle: .alert)
+               alertController.addTextField { textField in
+                textField.placeholder = NSLocalizedString("status_placeholder", comment: "")
             textField.text = self.statusLabel.text
         }
         let submitAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in

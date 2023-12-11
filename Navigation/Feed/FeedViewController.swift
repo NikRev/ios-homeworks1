@@ -12,20 +12,21 @@ class FeedViewController: UIViewController {
     
     private let textField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Введите слово"
+        textField.placeholder = NSLocalizedString("Enter a word", comment: "")
         textField.borderStyle = .roundedRect
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
 
     private let checkGuessButton: CustomButton = {
-        let button = CustomButton(customBackgroundColor: nil, title: "Проверить", titleColor: .white, cornerRadius: 5)
+        let button = CustomButton(customBackgroundColor: nil, title: NSLocalizedString("Check", comment: ""), titleColor: .white, cornerRadius: 5)
         button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
         button.clipsToBounds = true // обрезать содержимое кнопки
         button.addTarget(self, action: #selector(checkGuess), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+
 
     private let feedModel = FeedModel(secretWord: "ваш_секретный_пароль")
 
@@ -41,13 +42,14 @@ class FeedViewController: UIViewController {
                  let isCorrect = userInfo["isCorrect"] as? Bool else {
                return
            }
-           if isCorrect {
-               resultLabel.text = "Пароль верный"
-               resultLabel.textColor = .green
-           } else {
-               resultLabel.text = "Пароль неверный"
-               resultLabel.textColor = .red
-           }
+        if isCorrect {
+            resultLabel.text = NSLocalizedString("Password correct", comment: "")
+            resultLabel.textColor = .green
+        } else {
+            resultLabel.text = NSLocalizedString("Password incorrect", comment: "")
+            resultLabel.textColor = .red
+        }
+
     }
     
     private func setupUI() {

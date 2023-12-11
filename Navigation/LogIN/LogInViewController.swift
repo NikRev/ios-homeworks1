@@ -18,7 +18,7 @@ class LogInViewController: UIViewController {
     }()
    
     let buttonRegister: CustomButton = {
-        let button = CustomButton(customBackgroundColor: .gray, title: "Register", titleColor: .white, cornerRadius: 10)
+        let button = CustomButton(customBackgroundColor: .gray, title: NSLocalizedString("Register", comment: ""), titleColor: .white, cornerRadius: 10)
       //  button.setBackgroundImage(UIImage(named: "green_pixel"), for: .normal)
         button.addTarget(self, action: #selector(buttonRegisterFunc), for: .touchUpInside)
         button.backgroundColor = .gray
@@ -26,6 +26,7 @@ class LogInViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+
 
     
     private let stackView: UIStackView = {
@@ -59,7 +60,7 @@ class LogInViewController: UIViewController {
         textField.tintColor = UIColor.systemBlue
         textField.autocapitalizationType = .none
         textField.textEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0) // Добавление отступа слева
-        textField.placeholder = "Phone or Email"
+        textField.placeholder = NSLocalizedString("Phone or Email", comment: "")
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -74,7 +75,7 @@ class LogInViewController: UIViewController {
         textField.tintColor = UIColor.systemBlue
         textField.autocapitalizationType = .none
         textField.textEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0) // Добавление отступа слева
-        textField.placeholder = "Password"
+        textField.placeholder = NSLocalizedString("Password", comment: "")
         textField.isSecureTextEntry = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
@@ -82,7 +83,7 @@ class LogInViewController: UIViewController {
     
     
     let buttonVk: CustomButton = {
-        let button = CustomButton(customBackgroundColor: nil, title: "Log In", titleColor: .white, cornerRadius: 10)
+        let button = CustomButton(customBackgroundColor: nil, title: NSLocalizedString("LogIn",comment: "'"), titleColor: .white, cornerRadius: 10)
         button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
         button.addTarget(self, action: #selector(buttonLogFunc), for: .touchUpInside)
         button.clipsToBounds = true // обрезать содержимое кнопки

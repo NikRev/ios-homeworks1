@@ -1,5 +1,6 @@
 import UIKit
 import iOSIntPackage
+import Foundation
 
 class PhotosViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -53,9 +54,10 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     private func setupNavigationBar() {
-        title = "Photo Gallery"
+        title = NSLocalizedString("Photo_Gallery_Title", comment: "")
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
+
    
    
     private func setupImagePublisher() {

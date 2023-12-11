@@ -7,29 +7,31 @@ class FavoriteController: UIViewController, UITableViewDataSource, UITableViewDe
     var favoriteBase = [FavoriteBase]()
    
     override func viewWillAppear(_ animated: Bool) {
-          super.viewWillAppear(animated)
-          
-          // Загружаем свежие данные в таблицы и в CoreDate
-          loadFavoriteData()
-      }
+        super.viewWillAppear(animated)
+        
+        // Загружаем свежие данные в таблицы и в CoreDate
+        loadFavoriteData()
+    }
      
-      override func viewDidLoad() {
-          super.viewDidLoad()
-          view.backgroundColor = .white
-          
-          // Настройка и отображение таблицы
-          layout()
-      }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        
+        // Настройка и отображение таблицы
+        layout()
+        
+    }
       
-      private func loadFavoriteData() {
-          // Загрузка данных из сервиса
-          favoriteBase = favoriteService.getAllItems()
-
-         
-          DispatchQueue.main.async {
-              self.tableView.reloadData()
-          }
-      }
+    private func loadFavoriteData() {
+        // Загрузка данных из сервиса
+        favoriteBase = favoriteService.getAllItems()
+        
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
+    }
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -85,7 +87,7 @@ class FavoriteController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // Убедитесь, что title не является nil перед использованием
         if let author = favoriteItem.author {
-            cell.configure(with: author, author: "Author", imageURL: "")
+            cell.configure(with: author, author: NSLocalizedString("Author", comment: ""), imageURL: "")
         } else {
             // Если title равен nil, выполните соответствующие действия или просто не вызывайте configure
             // cell.configure(with: "", author: "Author", imageURL: "ImageURL")

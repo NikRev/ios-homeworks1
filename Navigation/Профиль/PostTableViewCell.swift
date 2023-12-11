@@ -111,10 +111,11 @@ class PostTableViewCell: UITableViewCell {
     public func configure(with publication: Publications) {
         // Настройка содержимого ячейки на основе данных публикации
         postImageView.image = UIImage(named: publication.image)
-        likesLabel.text = "Likes: \(publication.likes)"
-        viewsLabel.text = "Views: \(publication.views)"
-        postDescription.text = publication.description
-        authorLabel.text = "Author: \(publication.author)"
+        likesLabel.text = NSLocalizedString("Likes", comment: "") + ": \(publication.likes)"
+        viewsLabel.text = NSLocalizedString("Views", comment: "") + ": \(publication.views)"
+        postDescription.text = NSLocalizedString(publication.description, comment: "")
+        authorLabel.text = NSLocalizedString("Author", comment: "") + ": \(publication.author)"
     }
+
 }
 

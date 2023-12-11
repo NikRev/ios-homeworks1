@@ -19,7 +19,7 @@ class PhotosTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         label.textColor = .black
         label.font = .boldSystemFont(ofSize: 24)
-        label.text = "Photos"
+        label.text = NSLocalizedString("Photos", comment: "")
         return label
     }()
     

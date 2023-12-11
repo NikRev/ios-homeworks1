@@ -27,7 +27,6 @@
 		55478E8C2A2C9FD700D07C69 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55478E8B2A2C9FD700D07C69 /* SceneDelegate.swift */; };
 		55478E8E2A2C9FD700D07C69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55478E8D2A2C9FD700D07C69 /* ViewController.swift */; };
 		55478E932A2C9FD800D07C69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55478E922A2C9FD800D07C69 /* Assets.xcassets */; };
-		55478E962A2C9FD800D07C69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55478E942A2C9FD800D07C69 /* LaunchScreen.storyboard */; };
 		55478EA42A2CB4D800D07C69 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55478EA32A2CB4D800D07C69 /* FeedViewController.swift */; };
 		55478EA62A2E189200D07C69 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55478EA52A2E189200D07C69 /* PostViewController.swift */; };
 		556B3FD32A67E33C00F8571E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B3FD22A67E33C00F8571E /* LogInViewController.swift */; };
@@ -37,6 +36,8 @@
 		556C8C2C2AAF6A95007CFE15 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C8C2B2AAF6A95007CFE15 /* LoginInspector.swift */; };
 		556C8C2E2AAF71D6007CFE15 /* MyLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C8C2D2AAF71D6007CFE15 /* MyLoginFactory.swift */; };
 		556F82B02ADC231C00529136 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556F82AF2ADC231C00529136 /* ProfileCoordinator.swift */; };
+		55732EEA2B275F710072A11D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55732EEC2B275F710072A11D /* Localizable.strings */; };
+		55732F0E2B2777BB0072A11D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55732F102B2777BB0072A11D /* LaunchScreen.storyboard */; };
 		557AC4ED2AE3D677000B42D7 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557AC4EC2AE3D677000B42D7 /* FeedCoordinator.swift */; };
 		557AC4EF2AE3DB23000B42D7 /* LogInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557AC4EE2AE3DB23000B42D7 /* LogInCoordinator.swift */; };
 		557D1DEB2AC45786008DE9FE /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557D1DEA2AC45786008DE9FE /* PhotosTableViewCell.swift */; };
@@ -130,7 +131,6 @@
 		55478E8B2A2C9FD700D07C69 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		55478E8D2A2C9FD700D07C69 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		55478E922A2C9FD800D07C69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		55478E952A2C9FD800D07C69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		55478E972A2C9FD800D07C69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55478EA32A2CB4D800D07C69 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		55478EA52A2E189200D07C69 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +141,11 @@
 		556C8C2B2AAF6A95007CFE15 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		556C8C2D2AAF71D6007CFE15 /* MyLoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLoginFactory.swift; sourceTree = "<group>"; };
 		556F82AF2ADC231C00529136 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		55732EEE2B275F8F0072A11D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		55732EEF2B2760070072A11D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		55732F0F2B2777BB0072A11D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		55732F132B277CB00072A11D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		55732F152B277CB20072A11D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		557AC4EC2AE3D677000B42D7 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
 		557AC4EE2AE3DB23000B42D7 /* LogInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInCoordinator.swift; sourceTree = "<group>"; };
 		557D1DEA2AC45786008DE9FE /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
@@ -1348,9 +1353,10 @@
 				55478E8D2A2C9FD700D07C69 /* ViewController.swift */,
 				55478E922A2C9FD800D07C69 /* Assets.xcassets */,
 				556B3FD42A67EA4F00F8571E /* ColorSet.swift */,
-				55478E942A2C9FD800D07C69 /* LaunchScreen.storyboard */,
+				55732F102B2777BB0072A11D /* LaunchScreen.storyboard */,
 				55478E972A2C9FD800D07C69 /* Info.plist */,
 				559CB8582B076D5A00E7E5F5 /* GoogleService-Info.plist */,
+				55732EFB2B2761EA0072A11D /* Локализация */,
 				558A0EBF2B1A5FEA0062A62A /* Профиль */,
 				558A0EC52B1A61A10062A62A /* Post */,
 				558A0EC12B1A606E0062A62A /* LogIN */,
@@ -1365,14 +1371,22 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
+		55732EFB2B2761EA0072A11D /* Локализация */ = {
+			isa = PBXGroup;
+			children = (
+				55732EEC2B275F710072A11D /* Localizable.strings */,
+			);
+			path = "Локализация";
+			sourceTree = "<group>";
+		};
 		558A0EBF2B1A5FEA0062A62A /* Профиль */ = {
 			isa = PBXGroup;
 			children = (
 				55B387182AD833E400E768A7 /* PublicationViewModel.swift */,
 				55F434342A2E24BC0062F561 /* Post.swift */,
 				551313862A8793BF00493490 /* User.swift */,
-				556B3FD82A67F56300F8571E /* ProfileViewController.swift */,
 				558B104B2A56EDC10030A343 /* ProfileView.swift */,
+				556B3FD82A67F56300F8571E /* ProfileViewController.swift */,
 				550DD0F62AD70A7500135450 /* ProfileViewModel.swift */,
 				5509ABC92A7131F1003D3E94 /* Publications.swift */,
 				55D2FFAC2A81137E00EC448B /* PaddedTextField.swift */,
@@ -1530,6 +1544,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 55478E7D2A2C9FD700D07C69;
 			packageReferences = (
@@ -1550,7 +1565,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55478E962A2C9FD800D07C69 /* LaunchScreen.storyboard in Resources */,
+				55732F0E2B2777BB0072A11D /* LaunchScreen.storyboard in Resources */,
+				55732EEA2B275F710072A11D /* Localizable.strings in Resources */,
 				559CB8592B076D5A00E7E5F5 /* GoogleService-Info.plist in Resources */,
 				55478E932A2C9FD800D07C69 /* Assets.xcassets in Resources */,
 			);
@@ -1615,10 +1631,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		55478E942A2C9FD800D07C69 /* LaunchScreen.storyboard */ = {
+		55732EEC2B275F710072A11D /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				55478E952A2C9FD800D07C69 /* Base */,
+				55732EEE2B275F8F0072A11D /* ru */,
+				55732EEF2B2760070072A11D /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		55732F102B2777BB0072A11D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55732F0F2B2777BB0072A11D /* Base */,
+				55732F132B277CB00072A11D /* en */,
+				55732F152B277CB20072A11D /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1630,6 +1657,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1691,6 +1719,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1752,6 +1781,7 @@
 				DEVELOPMENT_TEAM = KPW97R7K5W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1779,6 +1809,7 @@
 				DEVELOPMENT_TEAM = KPW97R7K5W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

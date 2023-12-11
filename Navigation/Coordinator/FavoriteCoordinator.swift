@@ -9,9 +9,10 @@ class FavoriteCoordinator: Coordinator {
 
     func start() {
         let favoriteCotroller = FavoriteController()
-        favoriteCotroller.title = "Избранное"
+        favoriteCotroller.title = NSLocalizedString("Favorites", comment: "")
         let favoriteImage = UIImage(systemName: "heart")
-        favoriteCotroller.tabBarItem = UITabBarItem(title: "Избранное", image: favoriteImage, tag: 5)
+        favoriteCotroller.tabBarItem = UITabBarItem(title: NSLocalizedString("Favorites", comment: ""), image: favoriteImage, tag: 5)
         navigationController.setViewControllers([favoriteCotroller], animated: true)
     }
+
 }

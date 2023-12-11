@@ -3,19 +3,19 @@ import Foundation
 
 
 protocol ICoreDataService{
-    var context: NSManagedObjectContext{get}
-    func saveContext()
+    var mainContext:NSManagedObjectContext{get}
+    var backroundContext:NSManagedObjectContext{get}
 }
 
 final class CoreDataService:ICoreDataService{
-   
+
     static let shared:ICoreDataService = CoreDataService()//синглотон нужен
     //потому что надо обращаться к одному и тому же классу
     //с одной и той же ссылкой на контейннер
     
     private init(){}
     
-    private let persistentContainer:NSPersistentContainer = { // тут просиходит сохранение данных
+    private  var persistentContainer:NSPersistentContainer = { // тут просиходит сохранение данных
         let container = NSPersistentContainer(name: .coreDataBaseName)
         container.loadPersistentStores { _, error in
             if let error = error {
@@ -27,20 +27,17 @@ final class CoreDataService:ICoreDataService{
     
     }()
     
-    lazy var context: NSManagedObjectContext = {
-        return persistentContainer.viewContext //тут будет храниться
+    lazy var mainContext: NSManagedObjectContext = {
+        let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        context.persistentStoreCoordinator = persistentContainer.persistentStoreCoordinator
+        return context
     }()
     
-    func saveContext() {
-        if context.hasChanges{
-            do{
-                try context.save() // если в контексте есть изменения, то мы сохраняем
-            }catch{
-                print(error)
-                assertionFailure("Save Error")
-            }
-        }
-    }
+    lazy var backroundContext: NSManagedObjectContext = {
+        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        context.persistentStoreCoordinator = persistentContainer.persistentStoreCoordinator
+        return context
+    }()
     
     
 }

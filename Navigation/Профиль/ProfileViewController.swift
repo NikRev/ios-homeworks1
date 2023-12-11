@@ -43,21 +43,42 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate, Post
                 let publicationViewModel = viewModel.publicationViewModel(at: indexPath)
                 
                 // Создаем новый объект 'FavoriteBase' в контексте CoreData
-                let newPublication = FavoriteBase(context: CoreDataService.shared.context)
-                
-                // Устанавливаем свойства новой публикации из модели представления
-                newPublication.author = publicationViewModel.publication.author
-                newPublication.description1 = publicationViewModel.publication.description
-                // Устанавливаем другие свойства по необходимости
-                
-                // Сохраняем изменения в CoreData
-                CoreDataService.shared.saveContext()
-                
-                
-                 tableView.reloadData()
+                let backgroundContext = CoreDataService.shared.backroundContext
+                backgroundContext.perform { [weak self] in
+                    guard let self = self else { return }
+                    
+                    let newPublication = FavoriteBase(context: backgroundContext)
+                    newPublication.author = publicationViewModel.publication.author
+                    newPublication.description1 = publicationViewModel.publication.description
+                   
+                    
+                    // Сохраняем изменения в CoreData
+                    do {
+                        try backgroundContext.save()
+                        
+                        // Показываем Alert после успешного добавления в избранное
+                        DispatchQueue.main.async {
+                            let alertController = UIAlertController(title: "Добавлено в избранное", message: nil, preferredStyle: .alert)
+                            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            self.present(alertController, animated: true, completion: nil)
+                            
+                            // Обновляем таблицу на основном потоке
+                            self.tableView.reloadData()
+                        }
+                        
+                    } catch {
+                        // Показываем Alert с сообщением об ошибке
+                        DispatchQueue.main.async {
+                            let errorAlertController = UIAlertController(title: "Ошибка", message: "Не удалось добавить в избранное. \(error.localizedDescription)", preferredStyle: .alert)
+                            errorAlertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            self.present(errorAlertController, animated: true, completion: nil)
+                        }
+                    }
+                }
             }
         }
     }
+
 
 
     

@@ -5,7 +5,9 @@ class FavoriteController: UIViewController, UITableViewDataSource, UITableViewDe
     
     let favoriteService = FavoriteService()
     var favoriteBase = [FavoriteBase]()
-   
+    var currentFilter: String?
+    
+    
     override func viewWillAppear(_ animated: Bool) {
           super.viewWillAppear(animated)
           
@@ -13,23 +15,84 @@ class FavoriteController: UIViewController, UITableViewDataSource, UITableViewDe
           loadFavoriteData()
       }
      
-      override func viewDidLoad() {
-          super.viewDidLoad()
-          view.backgroundColor = .white
-          
-          // Настройка и отображение таблицы
-          layout()
-      }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        
+        // Настройка и отображение таблицы
+        layout()
+        
+        
+        // Добавьте кнопки в NavigationBar
+        let filterButton = UIBarButtonItem(title: "Фильтр", style: .plain, target: self, action: #selector(showFilterAlert))
+        let clearFilterButton = UIBarButtonItem(title: "Очистить", style: .plain, target: self, action: #selector(clearFilter))
+        
+        navigationItem.rightBarButtonItems = [filterButton, clearFilterButton]
+    }
       
-      private func loadFavoriteData() {
-          // Загрузка данных из сервиса
-          favoriteBase = favoriteService.getAllItems()
+    
+    @objc private func showFilterAlert() {
+        let alertController = UIAlertController(title: "Фильтр по автору", message: "Введите имя автора", preferredStyle: .alert)
+        
+        alertController.addTextField { textField in
+            textField.placeholder = "Имя автора"
+        }
+        
+        let applyAction = UIAlertAction(title: "Применить", style: .default) { [weak self, weak alertController] _ in
+            guard let self = self, let alertController = alertController else { return }
+            
+            // Получите введенное имя автора из текстового поля
+            if let authorName = alertController.textFields?.first?.text, !authorName.isEmpty {
+                // Установите текущий фильтр и обновите отображаемые элементы
+                self.currentFilter = authorName
+                self.filterItems()
+            } else {
+                // Если введено пустое имя, сбросьте текущий фильтр
+                self.currentFilter = nil
+                self.filterItems()
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        
+        alertController.addAction(applyAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+        
+    }
 
-         
-          DispatchQueue.main.async {
-              self.tableView.reloadData()
-          }
-      }
+    @objc private func clearFilter() {
+        // Сбросьте текущий фильтр и обновите отображаемые элементы
+        currentFilter = nil
+        filterItems()
+        
+    }
+
+    private func filterItems() {
+        if let filter = currentFilter, !filter.isEmpty {
+            // Примените фильтр к вашим элементам (вам нужно реализовать этот метод)
+            favoriteBase = favoriteService.filterItemsByAuthor(filter)
+        } else {
+            // Если фильтр пустой, отобразите все элементы
+            favoriteBase = favoriteService.getAllItems()
+        }
+        
+        // Обновите таблицу
+        tableView.reloadData()
+        
+    }
+    
+    private func loadFavoriteData() {
+        favoriteService.getAllItems { [weak self] items in
+            self?.favoriteBase = items
+
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
+    }
+
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -54,20 +117,48 @@ class FavoriteController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return favoriteBase.count
+        let rowCount = favoriteBase.count
+
+        // Проверка на наличие данных в CoreData
+        if rowCount == 0 {
+            // Отобразить сообщение, что данные отсутствуют
+            let noDataLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            noDataLabel.text = "К сожалению, здесь пока пусто"
+            noDataLabel.textColor = UIColor.black
+            noDataLabel.textAlignment = .center
+            tableView.backgroundView = noDataLabel
+            tableView.separatorStyle = .none
+        } else {
+            // Очистить сообщение и установить стиль разделителя
+            tableView.backgroundView = nil
+            tableView.separatorStyle = .singleLine
+        }
+
+        return rowCount
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Вызываем метод удаления из CoreData
-            favoriteService.deleteItem(at: indexPath.row)
-            
-            // Удаляем элемент из массива и обновляем таблицу
-            favoriteBase.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            
+            let favoriteService = FavoriteService()
+
+            favoriteService.deleteItem(at: indexPath.row) { [weak self] updatedItems in
+                DispatchQueue.main.async { [weak self] in
+                    // Обновляем массив данных в контроллере
+                    self?.favoriteBase = updatedItems
+
+                    // Обновляем UI, удаляя строку из таблицы
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+
+            }
         }
     }
+
+
+
+
+
+
 
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

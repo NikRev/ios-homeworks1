@@ -30,7 +30,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate, Post
         let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
         doubleTapGesture.numberOfTapsRequired = 2
         tableView.addGestureRecognizer(doubleTapGesture)
-
+        setupTheme()
         constraintSetup()
     }
 
@@ -59,7 +59,40 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate, Post
         }
     }
 
+    private func setupTheme() {
+        updateTheme(traitCollection.userInterfaceStyle)
+        
+    }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            updateTheme(traitCollection.userInterfaceStyle)
+        }
+        
+    }
+
+    private func updateTheme(_ userInterfaceStyle: UIUserInterfaceStyle) {
+        if userInterfaceStyle == .dark {
+            setupDarkTheme()
+        } else {
+            setupLightTheme()
+        }
+        
+    }
+
+    private func setupLightTheme() {
+        view.backgroundColor = .lightBackground
+        // Другие настройки для светлой темы
+        
+    }
+
+    private func setupDarkTheme() {
+        view.backgroundColor = .darkBackground
+        
+        // Другие настройки для темной темы
+        
+    }
     
     private func constraintSetup() {
         NSLayoutConstraint.activate([
@@ -154,3 +187,10 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
 
 }
 
+extension UIColor {
+    static let lightBackground = UIColor.white
+    static let lightText = UIColor.black
+    static let darkBackground = UIColor.black
+    static let darkText = UIColor.white
+    // Добавьте другие цвета по мере необходимости
+}

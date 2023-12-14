@@ -70,9 +70,11 @@ class ProfileView: UIView {
         setupGestureRecognizers()
         setUserData()
         submitButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside) // Добавляем обработчик для кнопки
-
+        setupTheme()
     }
   
+
+    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "userStatus", let newStatus = change?[.newKey] as? String {
             setStatus(newStatus)
@@ -176,5 +178,48 @@ class ProfileView: UIView {
         statusLabel.text = status
         statusTextField.text = status
     }
+    
+    private func setupTheme() {
+        updateTheme(traitCollection.userInterfaceStyle)
+        
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            updateTheme(traitCollection.userInterfaceStyle)
+        }
+        
+    }
+
+    private func updateTheme(_ userInterfaceStyle: UIUserInterfaceStyle) {
+        if userInterfaceStyle == .dark {
+            setupDarkTheme()
+        } else {
+            setupLightTheme()
+        }
+        
+    }
+
+    private func setupLightTheme() {
+        backgroundColor = .lightBackgroundrprofile
+        nameLabel.textColor = .lightTextprofile
+        // Другие настройки для светлой темы
+        
+    }
+
+    private func setupDarkTheme() {
+        backgroundColor = .darkBackgroundprofile
+        nameLabel.textColor = .darkTextprofile
+        // Другие настройки для темной темы
+    }
+    
 }
 
+extension UIColor {
+    static let lightBackgroundrprofile = UIColor.white
+    static let lightTextprofile = UIColor.black
+    static let darkBackgroundprofile = UIColor.black
+    static let darkTextprofile = UIColor.white
+    // Добавьте другие цвета по мере необходимости
+}

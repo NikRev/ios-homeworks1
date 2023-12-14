@@ -8,7 +8,7 @@ class FavoriteController: UIViewController, UITableViewDataSource, UITableViewDe
    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        setupTheme()
         // Загружаем свежие данные в таблицы и в CoreDate
         loadFavoriteData()
     }
@@ -16,7 +16,7 @@ class FavoriteController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+        setupTheme()
         // Настройка и отображение таблицы
         layout()
         
@@ -97,4 +97,43 @@ class FavoriteController: UIViewController, UITableViewDataSource, UITableViewDe
            cell.selectionStyle = .none
         return cell
     }
+    
+    private func setupTheme() {
+        updateTheme(traitCollection.userInterfaceStyle)
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            updateTheme(traitCollection.userInterfaceStyle)
+        }
+        
+    }
+
+    private func updateTheme(_ userInterfaceStyle: UIUserInterfaceStyle) {
+        if userInterfaceStyle == .dark {
+            setupDarkTheme()
+        } else {
+            setupLightTheme()
+        }
+        
+    }
+
+    private func setupLightTheme() {
+        view.backgroundColor = .lightBackgroundFavorite
+        // Другие настройки для светлой темы
+    }
+
+    private func setupDarkTheme() {
+        view.backgroundColor = .darkBackgroundFavorite
+        // Другие настройки для темной темы
+    }
+}
+
+extension UIColor {
+    static let lightBackgroundFavorite = UIColor.white
+    static let lightTextFavorite = UIColor.black
+    static let darkBackgroundFavorite = UIColor.black
+    static let darkTextFavorite = UIColor.white
+    // Добавьте другие цвета по мере необходимости
 }

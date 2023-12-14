@@ -74,7 +74,7 @@ class PhotosTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupSubviews()
         setupConstraints()
-       
+        setupTheme()
     }
    
     private func setupSubviews() {
@@ -129,8 +129,51 @@ class PhotosTableViewCell: UITableViewCell {
         ])
     }
 
+    private func setupTheme() {
+        updateTheme(traitCollection.userInterfaceStyle)
+        
+    }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            updateTheme(traitCollection.userInterfaceStyle)
+        }
+        
+    }
+
+    private func updateTheme(_ userInterfaceStyle: UIUserInterfaceStyle) {
+        if userInterfaceStyle == .dark {
+            setupDarkTheme()
+        } else {
+            setupLightTheme()
+        }
+        
+    }
+
+    private func setupLightTheme() {
+        backgroundColor = .lightBackgroundrprofile
+        nameLabel.textColor = .lightTextTable
+        arrowLabel.textColor = .lightTextTable
+        
+    }
+
+    private func setupDarkTheme() {
+        backgroundColor = .darkBackgroundprofile
+        nameLabel.textColor = .darkTextTable
+        arrowLabel.textColor = .darkTextTable
+        // Другие настройки для темной темы
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+}
+
+extension UIColor {
+    static let lightBackgroundTable = UIColor.white
+    static let lightTextTable = UIColor.black
+    static let darkBackgroundTable = UIColor.black
+    static let darkTextTable = UIColor.white
+    // Добавьте другие цвета по мере необходимости
 }

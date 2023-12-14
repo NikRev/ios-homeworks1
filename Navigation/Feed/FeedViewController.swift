@@ -33,7 +33,7 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(handleWordCheckResult(_:)), name: NSNotification.Name(rawValue: "WordCheckResult"), object: nil)
-
+        setupTheme()
         setupUI()
     }
    
@@ -52,8 +52,46 @@ class FeedViewController: UIViewController {
 
     }
     
+    private func setupTheme() {
+        updateTheme(traitCollection.userInterfaceStyle)
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            updateTheme(traitCollection.userInterfaceStyle)
+        }
+        
+    }
+
+    private func updateTheme(_ userInterfaceStyle: UIUserInterfaceStyle) {
+        if userInterfaceStyle == .dark {
+            setupDarkTheme()
+        } else {
+            setupLightTheme()
+        }
+        
+    }
+
+    private func setupLightTheme() {
+        view.backgroundColor = .lightBackgroundFeed
+        textField.textColor = .lightTextFeed
+        //checkGuessButton.setTitleColor(.lightTextFeed, for: .normal)
+       
+        // Другие настройки для светлой темы
+    }
+
+    private func setupDarkTheme() {
+        view.backgroundColor = .darkBackgroundFeed
+        textField.textColor = .lightTextFeed
+        //checkGuessButton.setTitleColor(.darkTextFeed, for: .normal)
+        // Другие настройки для темной темы
+    }
+
+    
+    
     private func setupUI() {
-        view.backgroundColor = .white
+       
 
         view.addSubview(textField)
         view.addSubview(checkGuessButton)
@@ -79,4 +117,11 @@ class FeedViewController: UIViewController {
       }
    
    
+}
+extension UIColor {
+    static let lightBackgroundFeed = UIColor.white
+    static let lightTextFeed = UIColor.black
+    static let darkBackgroundFeed = UIColor.black
+    static let darkTextFeed = UIColor.white
+    // Добавьте другие цвета по мере необходимости
 }

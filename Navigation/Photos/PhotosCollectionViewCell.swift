@@ -15,6 +15,8 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupSubviews()
         setupConstraints()
+       
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,7 +38,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
             imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
-
-    
+   
    
 }
+

@@ -20,7 +20,7 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .white
+      
         
         return collectionView
     }()
@@ -32,14 +32,15 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         setupCollectionView()
         setupNavigationBar()
-     
-        
+        setupTheme()
+        setupTheme()
         processImage()
     }
     
     // MARK: - Setup Methods
     
     private func setupCollectionView() {
+      
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: "PhotoCell")
@@ -52,6 +53,8 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    
+    
     
     private func setupNavigationBar() {
         title = NSLocalizedString("Photo_Gallery_Title", comment: "")
@@ -149,13 +152,61 @@ class PhotosViewController: UIViewController, UICollectionViewDataSource, UIColl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        
     }
+    
+   
+    private func setupTheme() {
+        updateTheme(traitCollection.userInterfaceStyle)
+        
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            updateTheme(traitCollection.userInterfaceStyle)
+        }
+        
+    }
+
+    private func updateTheme(_ userInterfaceStyle: UIUserInterfaceStyle) {
+        if userInterfaceStyle == .dark {
+            setupDarkTheme()
+        } else {
+            setupLightTheme()
+        }
+        
+    }
+
+    private func setupLightTheme() {
+        view.backgroundColor = .lightBackgroundView
+        // Другие настройки для светлой темы
+        
+    }
+
+    private func setupDarkTheme() {
+        view.backgroundColor = .darkBackgroundView
+       
+        // Другие настройки для темной темы
+    }
+   
 }
+
+extension UIColor {
+    static let lightBackgroundView = UIColor.white
+    static let lightTextView = UIColor.black
+    static let darkBackgroundView = UIColor.black
+    static let darkTextView = UIColor.white
+    // Добавьте другие цвета по мере необходимости
+}
+
+
 
 /*
 // Расширение для реализации метода receive(images:)

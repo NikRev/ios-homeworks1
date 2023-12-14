@@ -61,7 +61,7 @@ class PostTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupSubviews()
         setupConstraints()
-        
+        setupTheme()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -116,6 +116,57 @@ class PostTableViewCell: UITableViewCell {
         postDescription.text = NSLocalizedString(publication.description, comment: "")
         authorLabel.text = NSLocalizedString("Author", comment: "") + ": \(publication.author)"
     }
+    
+    private func setupTheme() {
+        updateTheme(traitCollection.userInterfaceStyle)
+        
+    }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            updateTheme(traitCollection.userInterfaceStyle)
+        }
+        
+    }
+
+    private func updateTheme(_ userInterfaceStyle: UIUserInterfaceStyle) {
+        if userInterfaceStyle == .dark {
+            setupDarkTheme()
+        } else {
+            setupLightTheme()
+        }
+        
+    }
+
+    private func setupLightTheme() {
+        backgroundColor = .lightBackgroundPost
+        likesLabel.textColor = .lightTextPost
+        viewsLabel.textColor = .lightTextPost
+        viewsLabel.textColor = .lightTextPost
+        postDescription.textColor = .lightTextPost
+        authorLabel.textColor = .lightTextPost
+       
+        
+    }
+
+    private func setupDarkTheme() {
+        backgroundColor = .darkBackgroundPost
+        likesLabel.textColor = .darkTextPost
+        viewsLabel.textColor = .darkTextPost
+        viewsLabel.textColor = .darkTextPost
+        postDescription.textColor = .darkTextPost
+        authorLabel.textColor = .darkTextPost
+       
+    }
+    
+}
+
+extension UIColor {
+    static let lightBackgroundPost = UIColor.white
+    static let lightTextPost = UIColor.black
+    static let darkBackgroundPost = UIColor.black
+    static let darkTextPost = UIColor.white
+    // Добавьте другие цвета по мере необходимости
 }
 

@@ -22,7 +22,7 @@ class InfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        setupTheme()
 
         // Отображение UILabel
         view.addSubview(titleLabel)
@@ -102,4 +102,50 @@ class InfoViewController: UIViewController {
         alertController.addAction(action2)
         present(alertController, animated: true, completion: nil)
     }
+    
+    private func setupTheme() {
+        updateTheme(traitCollection.userInterfaceStyle)
+        
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            updateTheme(traitCollection.userInterfaceStyle)
+        }
+        
+    }
+
+    private func updateTheme(_ userInterfaceStyle: UIUserInterfaceStyle) {
+        if userInterfaceStyle == .dark {
+            setupDarkTheme()
+        } else {
+            setupLightTheme()
+        }
+        
+    }
+
+    private func setupLightTheme() {
+        view.backgroundColor = .lightBackgroundInfo
+        titleLabel.textColor = .lightTextInfo
+        orbitalPeriodLabel.textColor = .lightTextInfo
+        // Другие настройки для светлой темы
+        
+    }
+
+    private func setupDarkTheme() {
+        view.backgroundColor = .darkBackgroundInfo
+        titleLabel.textColor = .darkTextInfo
+        orbitalPeriodLabel.textColor = .darkTextInfo
+        // Другие настройки для темной темы
+    }
+   
+}
+
+extension UIColor {
+    static let lightBackgroundInfo = UIColor.white
+    static let lightTextInfo  = UIColor.black
+    static let darkBackgroundInfo  = UIColor.black
+    static let darkTextInfo  = UIColor.white
+    // Добавьте другие цвета по мере необходимости
 }

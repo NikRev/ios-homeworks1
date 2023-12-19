@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "blue_pixel.png",
       "idiom" : "universal",
       "scale" : "1x"
     },

@@ -1,16 +1,15 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-
     
-    private let resultLabel: UILabel = {
+     let resultLabel: UILabel = {
            let label = UILabel()
            label.translatesAutoresizingMaskIntoConstraints = false
            label.textAlignment = .center
            return label
     }()
     
-    private let textField: UITextField = {
+     let textField: UITextField = {
         let textField = UITextField()
         textField.placeholder = NSLocalizedString("Enter a word", comment: "")
         textField.borderStyle = .roundedRect
@@ -18,7 +17,7 @@ class FeedViewController: UIViewController {
         return textField
     }()
 
-    private let checkGuessButton: CustomButton = {
+    public let checkGuessButton: CustomButton = {
         let button = CustomButton(customBackgroundColor: nil, title: NSLocalizedString("Check", comment: ""), titleColor: .white, cornerRadius: 5)
         button.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
         button.clipsToBounds = true // обрезать содержимое кнопки
@@ -108,7 +107,7 @@ class FeedViewController: UIViewController {
         ])
     }
 
-    @objc private func checkGuess() {
+    @objc  func checkGuess() {
           guard let guessedWord = textField.text, !guessedWord.isEmpty else {
               return
           }

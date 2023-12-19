@@ -149,7 +149,7 @@ class LogInViewController: UIViewController {
            }
     }
     
-    @objc private func buttonRegisterFunc() {
+    @objc  func buttonRegisterFunc() {
         guard let loginText = loginTextField.text, !loginText.isEmpty,
               let passwordText = passwordTextField.text, !passwordText.isEmpty else {
             self.showAlert(title: "Error", message: "Please enter both login and password")
@@ -187,7 +187,7 @@ class LogInViewController: UIViewController {
     }
 
     
-    @objc private func buttonLogFunc() {
+    @objc  func buttonLogFunc() {
         guard let loginText = loginTextField.text, !loginText.isEmpty,
               let passwordText = passwordTextField.text, !passwordText.isEmpty else {
             self.showAlert(title: "Login Error", message: "Please enter both login and password")

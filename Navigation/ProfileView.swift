@@ -1,5 +1,5 @@
 import UIKit
-
+import StorageService
 class ProfileView: UIView {
     
     
@@ -38,7 +38,7 @@ class ProfileView: UIView {
     
     private let submitButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Submit", for: .normal)
+        button.setTitle("Set Status", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .blue
         button.layer.cornerRadius = 4

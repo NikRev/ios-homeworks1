@@ -12,24 +12,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let feedViewController = FeedViewController()
         feedViewController.title = "Лента"
-        feedViewController.view.backgroundColor = .gray
+        feedViewController.view.backgroundColor = .lightGray
         
-       
+        let logInViewController = LogInViewController()
+        _ = UINavigationController(rootViewController: logInViewController)
+        
         let profileViewController = ProfileViewController()
         profileViewController.title = "Profile"
-       
+        let logPhoto = UIImage(systemName: "person.crop.square.filled.and.at.rectangle.fill")
+        logInViewController.tabBarItem = UITabBarItem(title: "Log IN", image: logPhoto, tag: 0)
+
         let profileNavViewController = UINavigationController(rootViewController: profileViewController)
        
         let feedNavigationController = UINavigationController(rootViewController: feedViewController)
         
         let profileImage = UIImage(systemName: "person.circle.fill")
-        profileViewController.tabBarItem = UITabBarItem(title: "Профиль", image: profileImage, tag: 1)
+        profileViewController.tabBarItem = UITabBarItem(title: "Профиль", image: profileImage, tag: 2)
         
         let feedImage = UIImage(systemName: "house.fill")
-        feedViewController.tabBarItem = UITabBarItem(title: "Лента", image: feedImage, tag: 0)
+        feedViewController.tabBarItem = UITabBarItem(title: "Лента", image: feedImage, tag: 1)
         
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [feedNavigationController, profileNavViewController]
+        tabBarController.viewControllers = [logInViewController,feedNavigationController,profileNavViewController]
         tabBarController.selectedIndex = 0
         
         window.rootViewController = tabBarController

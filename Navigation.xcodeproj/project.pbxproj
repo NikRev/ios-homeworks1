@@ -72,7 +72,6 @@
 		559CB8532B076CE400E7E5F5 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 559CB8522B076CE400E7E5F5 /* FirebaseRemoteConfigSwift */; };
 		559CB8552B076CE400E7E5F5 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 559CB8542B076CE400E7E5F5 /* FirebaseStorage */; };
 		559CB8572B076CE400E7E5F5 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 559CB8562B076CE400E7E5F5 /* FirebaseStorageCombine-Community */; };
-		559CB8592B076D5A00E7E5F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 559CB8582B076D5A00E7E5F5 /* GoogleService-Info.plist */; };
 		55B387192AD833E400E768A7 /* PublicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B387182AD833E400E768A7 /* PublicationViewModel.swift */; };
 		55C077C92B177920006D6FF2 /* FavoriteCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C077C82B177920006D6FF2 /* FavoriteCoordinator.swift */; };
 		55C077CB2B17795A006D6FF2 /* FavoriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C077CA2B17795A006D6FF2 /* FavoriteController.swift */; };
@@ -728,7 +727,6 @@
 		559CB81E2B076B1200E7E5F5 /* SharedWithYou.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SharedWithYou.framework; path = System/Library/Frameworks/SharedWithYou.framework; sourceTree = SDKROOT; };
 		559CB81F2B076B1200E7E5F5 /* libTLE.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libTLE.tbd; path = usr/lib/libTLE.tbd; sourceTree = SDKROOT; };
 		559CB8202B076B1200E7E5F5 /* libCoreLSKD.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libCoreLSKD.tbd; path = usr/lib/libCoreLSKD.tbd; sourceTree = SDKROOT; };
-		559CB8582B076D5A00E7E5F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		55B387182AD833E400E768A7 /* PublicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationViewModel.swift; sourceTree = "<group>"; };
 		55C077C82B177920006D6FF2 /* FavoriteCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCoordinator.swift; sourceTree = "<group>"; };
 		55C077CA2B17795A006D6FF2 /* FavoriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteController.swift; sourceTree = "<group>"; };
@@ -1404,7 +1402,6 @@
 				556B3FD42A67EA4F00F8571E /* ColorSet.swift */,
 				55732F102B2777BB0072A11D /* LaunchScreen.storyboard */,
 				55478E972A2C9FD800D07C69 /* Info.plist */,
-				559CB8582B076D5A00E7E5F5 /* GoogleService-Info.plist */,
 				55732EFB2B2761EA0072A11D /* Локализация */,
 				558A0EBF2B1A5FEA0062A62A /* Профиль */,
 				558A0EC52B1A61A10062A62A /* Post */,
@@ -1680,7 +1677,6 @@
 			files = (
 				55732F0E2B2777BB0072A11D /* LaunchScreen.storyboard in Resources */,
 				55732EEA2B275F710072A11D /* Localizable.strings in Resources */,
-				559CB8592B076D5A00E7E5F5 /* GoogleService-Info.plist in Resources */,
 				55478E932A2C9FD800D07C69 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

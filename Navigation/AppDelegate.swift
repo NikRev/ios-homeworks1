@@ -1,24 +1,29 @@
 import UIKit
-import Firebase
-import FirebaseCore
-import FirebaseAuth
+
+import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
+    let localNotificationsService = LocalNotificationsService()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
            
-        
-      
-        FirebaseApp.configure()
-           
-            
-        // Override point for customization after application launch.
+          
 
-            // Example: Make a network request for people
-        let randomConfiguration: AppConfiguration = [.people, .planets, .starships].randomElement() ?? .people
+           // Use Task to call the asynchronous method
+           Task {
+               do {
+                   try await self.localNotificationsService.registeForLatestUpdatesIfPossible()
+               } catch {
+                   // Handle errors
+                   print("Error registering for latest updates: \(error)")
+               }
+           }
+
+           // Example: Make a network request for people
+           let randomConfiguration: AppConfiguration = [.people, .planets, .starships].randomElement() ?? .people
 
            // Example: Make a network request with a random configuration
            NetworkService.request(for: randomConfiguration) { result in
@@ -32,8 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                }
            }
 
-            return true
-        }
+           return true
+       }
 
 
     // MARK: UISceneSession Lifecycle
@@ -47,6 +52,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
       
     }
-
 
 }

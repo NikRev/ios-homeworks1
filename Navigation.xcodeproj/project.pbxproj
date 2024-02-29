@@ -29,6 +29,7 @@
 		55478E932A2C9FD800D07C69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55478E922A2C9FD800D07C69 /* Assets.xcassets */; };
 		55478EA42A2CB4D800D07C69 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55478EA32A2CB4D800D07C69 /* FeedViewController.swift */; };
 		55478EA62A2E189200D07C69 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55478EA52A2E189200D07C69 /* PostViewController.swift */; };
+		5548E9772B90FB2800534C97 /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5548E9762B90FB2800534C97 /* LocalNotificationsService.swift */; };
 		556B3FD32A67E33C00F8571E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B3FD22A67E33C00F8571E /* LogInViewController.swift */; };
 		556B3FD52A67EA4F00F8571E /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B3FD42A67EA4F00F8571E /* ColorSet.swift */; };
 		556B3FD92A67F56300F8571E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B3FD82A67F56300F8571E /* ProfileViewController.swift */; };
@@ -158,6 +159,7 @@
 		55478E972A2C9FD800D07C69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55478EA32A2CB4D800D07C69 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		55478EA52A2E189200D07C69 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		5548E9762B90FB2800534C97 /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
 		556B3FD22A67E33C00F8571E /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		556B3FD42A67EA4F00F8571E /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
 		556B3FD82A67F56300F8571E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -1403,6 +1405,7 @@
 				55732F102B2777BB0072A11D /* LaunchScreen.storyboard */,
 				55478E972A2C9FD800D07C69 /* Info.plist */,
 				55732EFB2B2761EA0072A11D /* Локализация */,
+				5548E9752B90FB0F00534C97 /* Services */,
 				558A0EBF2B1A5FEA0062A62A /* Профиль */,
 				558A0EC52B1A61A10062A62A /* Post */,
 				558A0EC12B1A606E0062A62A /* LogIN */,
@@ -1415,6 +1418,14 @@
 				552DAEBA2B03D43B00819827 /* JsonCodable */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		5548E9752B90FB0F00534C97 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				5548E9762B90FB2800534C97 /* LocalNotificationsService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		55732EFB2B2761EA0072A11D /* Локализация */ = {
@@ -1719,6 +1730,7 @@
 				556C8C2C2AAF6A95007CFE15 /* LoginInspector.swift in Sources */,
 				5509ABCF2A7BAAAD003D3E94 /* Post.swift in Sources */,
 				55FC240F2A8A355500181A38 /* CurrentUserService.swift in Sources */,
+				5548E9772B90FB2800534C97 /* LocalNotificationsService.swift in Sources */,
 				552DAEC22B03E32B00819827 /* JsonCodableModel.swift in Sources */,
 				550DD0F72AD70A7500135450 /* ProfileViewModel.swift in Sources */,
 				557AC4EF2AE3DB23000B42D7 /* LogInCoordinator.swift in Sources */,

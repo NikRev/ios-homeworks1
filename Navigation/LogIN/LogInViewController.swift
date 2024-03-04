@@ -26,7 +26,16 @@ class LogInViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
+    
+    let buttonAuth: CustomButton = {
+        let button = CustomButton(customBackgroundColor: .gray, title: NSLocalizedString("Биометрия", comment: ""), titleColor: .white, cornerRadius: 10)
+      //  button.setBackgroundImage(UIImage(named: "green_pixel"), for: .normal)
+        button.addTarget(self, action: #selector(authorizationFinished), for: .touchUpInside)
+        button.backgroundColor = .gray
+        button.clipsToBounds = true // обрезать содержимое кнопки
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
 
     
     private let stackView: UIStackView = {
@@ -149,6 +158,27 @@ class LogInViewController: UIViewController {
            }
     }
     
+    @objc func authorizationFinished() {
+        let localAuthorizationService = LocalAuthorizationService()
+        
+        // Выполняем аутентификацию в фоновом потоке
+        DispatchQueue.global().async {
+            localAuthorizationService.authorizeIfPossible { success, error in
+                DispatchQueue.main.async {
+                    // Возвращаемся в основной поток для обновления интерфейса
+                    if let error = error {
+                        print("Пользователь не авторизован: \(error.localizedDescription)")
+                    } else {
+                        print("Пользователь авторизован")
+                        let profileViewController = ProfileViewController()
+                        self.navigationController?.pushViewController(profileViewController, animated: true)
+                    }
+                }
+            }
+        }
+    }
+
+    
     @objc  func buttonRegisterFunc() {
         guard let loginText = loginTextField.text, !loginText.isEmpty,
               let passwordText = passwordTextField.text, !passwordText.isEmpty else {
@@ -264,12 +294,15 @@ class LogInViewController: UIViewController {
         scrollView.addSubview(imageVK)
         scrollView.addSubview(buttonVk)
         scrollView.addSubview(buttonRegister)
+         scrollView.addSubview(buttonAuth)
         view.addSubview(scrollView)
         view.addSubview(imageVK)
         view.addSubview(buttonVk)
+         view.addSubview(buttonAuth)
         view.addSubview(buttonRegister)
         stackView.addArrangedSubview(loginTextField)
         stackView.addArrangedSubview(passwordTextField)
+         
         
     }
 
@@ -301,7 +334,12 @@ class LogInViewController: UIViewController {
             buttonRegister.topAnchor.constraint(equalTo: buttonVk.bottomAnchor, constant: 16),
             buttonRegister.heightAnchor.constraint(equalToConstant: 50),
             buttonRegister.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            buttonRegister.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            buttonRegister.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+           
+            buttonAuth.topAnchor.constraint(equalTo: buttonRegister.bottomAnchor, constant: 16),
+            buttonAuth.heightAnchor.constraint(equalToConstant: 50),
+            buttonAuth.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            buttonAuth.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ])
     }
 }

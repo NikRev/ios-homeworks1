@@ -30,12 +30,12 @@
 		55478EA42A2CB4D800D07C69 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55478EA32A2CB4D800D07C69 /* FeedViewController.swift */; };
 		55478EA62A2E189200D07C69 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55478EA52A2E189200D07C69 /* PostViewController.swift */; };
 		5548E9772B90FB2800534C97 /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5548E9762B90FB2800534C97 /* LocalNotificationsService.swift */; };
+		5548E9792B95D40100534C97 /* LocalAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5548E9782B95D40100534C97 /* LocalAuthorizationService.swift */; };
 		556B3FD32A67E33C00F8571E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B3FD22A67E33C00F8571E /* LogInViewController.swift */; };
 		556B3FD52A67EA4F00F8571E /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B3FD42A67EA4F00F8571E /* ColorSet.swift */; };
 		556B3FD92A67F56300F8571E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B3FD82A67F56300F8571E /* ProfileViewController.swift */; };
 		556C8C2A2AAF6208007CFE15 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C8C292AAF6208007CFE15 /* Checker.swift */; };
 		556C8C2C2AAF6A95007CFE15 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C8C2B2AAF6A95007CFE15 /* LoginInspector.swift */; };
-		556C8C2E2AAF71D6007CFE15 /* MyLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C8C2D2AAF71D6007CFE15 /* MyLoginFactory.swift */; };
 		556F82B02ADC231C00529136 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556F82AF2ADC231C00529136 /* ProfileCoordinator.swift */; };
 		55732EEA2B275F710072A11D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55732EEC2B275F710072A11D /* Localizable.strings */; };
 		55732F0E2B2777BB0072A11D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55732F102B2777BB0072A11D /* LaunchScreen.storyboard */; };
@@ -160,12 +160,12 @@
 		55478EA32A2CB4D800D07C69 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		55478EA52A2E189200D07C69 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		5548E9762B90FB2800534C97 /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
+		5548E9782B95D40100534C97 /* LocalAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthorizationService.swift; sourceTree = "<group>"; };
 		556B3FD22A67E33C00F8571E /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		556B3FD42A67EA4F00F8571E /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
 		556B3FD82A67F56300F8571E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		556C8C292AAF6208007CFE15 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		556C8C2B2AAF6A95007CFE15 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
-		556C8C2D2AAF71D6007CFE15 /* MyLoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLoginFactory.swift; sourceTree = "<group>"; };
 		556F82AF2ADC231C00529136 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		55732EEE2B275F8F0072A11D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55732EEF2B2760070072A11D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1424,6 +1424,7 @@
 			isa = PBXGroup;
 			children = (
 				5548E9762B90FB2800534C97 /* LocalNotificationsService.swift */,
+				5548E9782B95D40100534C97 /* LocalAuthorizationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1474,7 +1475,6 @@
 				556B3FD22A67E33C00F8571E /* LogInViewController.swift */,
 				556C8C292AAF6208007CFE15 /* Checker.swift */,
 				556C8C2B2AAF6A95007CFE15 /* LoginInspector.swift */,
-				556C8C2D2AAF71D6007CFE15 /* MyLoginFactory.swift */,
 				55DC3B652B31C54100EC209D /* LogInViewControllerTests.swift */,
 			);
 			path = LogIN;
@@ -1715,7 +1715,6 @@
 			files = (
 				55478EA62A2E189200D07C69 /* PostViewController.swift in Sources */,
 				558B104C2A56EDC10030A343 /* ProfileView.swift in Sources */,
-				556C8C2E2AAF71D6007CFE15 /* MyLoginFactory.swift in Sources */,
 				55C077C92B177920006D6FF2 /* FavoriteCoordinator.swift in Sources */,
 				55C077D92B1899A8006D6FF2 /* FavoriteService.swift in Sources */,
 				55C077CB2B17795A006D6FF2 /* FavoriteController.swift in Sources */,
@@ -1752,6 +1751,7 @@
 				556B3FD92A67F56300F8571E /* ProfileViewController.swift in Sources */,
 				557D1DEB2AC45786008DE9FE /* PhotosTableViewCell.swift in Sources */,
 				55F434372A2E29E80062F561 /* InfoViewController.swift in Sources */,
+				5548E9792B95D40100534C97 /* LocalAuthorizationService.swift in Sources */,
 				551A6C372A8CDFD800509673 /* TestUserService.swift in Sources */,
 				55E83D042AD03412008C43A7 /* CustomButton.swift in Sources */,
 				556B3FD32A67E33C00F8571E /* LogInViewController.swift in Sources */,
